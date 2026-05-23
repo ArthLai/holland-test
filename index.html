@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover" />
+  <meta name="theme-color" content="#faf6f0" />
   <meta name="description"
-    content="Holland 職涯六型測評 · 60 題 · 找出你的 Top 3 RIASEC 組合與適合的職業方向" />
+    content="Holland 職涯六型測評 · 36 題 · 找出你的 Top 3 RIASEC 組合與適合的職業方向" />
   <title>Holland 職涯六型測評 · 找出你的 Top 3 組合</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +18,7 @@
     :root {
       --bg: #faf6f0;
       --bg2: #f5ede0;
+      --bg3: #ede2cf;
       --ink: #1a1410;
       --ink2: #2d2520;
       --muted: #7a6e65;
@@ -38,17 +40,25 @@
       --font-display: 'Noto Serif TC', serif;
       --font-body: 'Noto Sans TC', sans-serif;
       --font-mono: 'IBM Plex Mono', monospace;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, .04);
+      --shadow-md: 0 6px 18px rgba(0, 0, 0, .08);
+      --shadow-lg: 0 12px 36px rgba(0, 0, 0, .10);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body {
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
       background: var(--bg);
       color: var(--ink);
       font-family: var(--font-body);
       font-size: 16px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      min-height: 100svh;
     }
 
     body::before {
@@ -70,14 +80,16 @@
       z-index: 1;
     }
 
-    /* === Intro Screen === */
+    /* ============================================================ */
+    /* INTRO SCREEN */
+    /* ============================================================ */
     .intro h1 {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: clamp(36px, 6vw, 56px);
+      font-size: clamp(32px, 6.5vw, 56px);
       line-height: 1.12;
-      letter-spacing: -.01em;
-      margin-bottom: 16px;
+      letter-spacing: -.015em;
+      margin-bottom: 18px;
     }
 
     .intro h1 em {
@@ -86,17 +98,17 @@
     }
 
     .intro .lead {
-      font-size: 17px;
+      font-size: clamp(15px, 4vw, 17px);
       color: var(--ink2);
-      line-height: 1.7;
-      margin-bottom: 32px;
+      line-height: 1.75;
+      margin-bottom: 28px;
       max-width: 580px;
     }
 
     .kicker {
       font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 3px;
+      font-size: 11.5px;
+      letter-spacing: 2.5px;
       color: var(--accent2);
       text-transform: uppercase;
       font-weight: 600;
@@ -106,53 +118,55 @@
     .meta-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 28px 0 32px;
+      gap: 12px;
+      margin: 24px 0 28px;
       border-top: 1.5px solid var(--ink);
       padding-top: 18px;
     }
 
     .meta-grid .lab {
       font-family: var(--font-mono);
-      font-size: 10.5px;
-      letter-spacing: 1.5px;
+      font-size: 10px;
+      letter-spacing: 1.2px;
       color: var(--muted);
       text-transform: uppercase;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .meta-grid .val {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 20px;
+      font-size: clamp(16px, 4.5vw, 20px);
       color: var(--ink);
+      line-height: 1.2;
     }
 
     .codes-preview {
       background: var(--card);
       border: 1.5px solid var(--border);
       border-radius: 12px;
-      padding: 20px 22px;
+      padding: 18px 18px 16px;
       margin-bottom: 28px;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, .04);
+      box-shadow: var(--shadow-sm);
     }
 
     .codes-preview h3 {
       font-family: var(--font-display);
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 700;
       margin-bottom: 12px;
+      color: var(--ink);
     }
 
     .codes-row {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: 8px;
+      gap: 6px;
     }
 
     .code-chip {
       text-align: center;
-      padding: 10px 4px;
+      padding: 10px 2px 8px;
       border-radius: 8px;
       background: var(--bg2);
       border: 1px solid var(--border);
@@ -161,15 +175,16 @@
     .code-chip .l {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1;
       color: var(--ink);
     }
 
     .code-chip .n {
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--muted);
       margin-top: 4px;
+      letter-spacing: .5px;
     }
 
     .code-chip.r .l { color: var(--r); }
@@ -184,73 +199,91 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 16px 32px;
+      padding: 15px 28px;
       background: var(--ink);
       color: var(--bg);
       border: none;
       border-radius: 999px;
       font-family: var(--font-body);
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 700;
       cursor: pointer;
-      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease, opacity .15s ease;
+      box-shadow: var(--shadow-md);
       text-decoration: none;
+      min-height: 48px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .btn:hover {
+    .btn:hover:not(:disabled) {
       transform: translateY(-2px);
-      box-shadow: 0 10px 24px rgba(0, 0, 0, .2);
+      box-shadow: var(--shadow-lg);
     }
 
-    .btn.accent {
-      background: var(--accent2);
+    .btn:active:not(:disabled) {
+      transform: translateY(0);
     }
 
+    .btn:disabled {
+      opacity: .35;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn.accent { background: var(--accent2); }
     .btn.outline {
       background: transparent;
       color: var(--ink);
       border: 1.5px solid var(--ink);
       box-shadow: none;
     }
-
-    .btn.outline:hover {
+    .btn.outline:hover:not(:disabled) {
       background: var(--ink);
       color: var(--bg);
     }
-
     .btn.small {
-      padding: 10px 18px;
+      padding: 11px 18px;
       font-size: 14px;
+      min-height: 42px;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 24px;
+      margin-top: 22px;
     }
 
     .small-note {
       font-size: 13px;
       color: var(--muted);
-      margin-top: 12px;
+      margin-top: 14px;
       font-style: italic;
+      line-height: 1.6;
     }
 
-    /* === Question Screen === */
+    /* ============================================================ */
+    /* QUESTION SCREEN */
+    /* ============================================================ */
     .qscreen { display: none; }
-    .qscreen.active { display: block; }
+    .qscreen.active { display: block; animation: fadeIn .3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .progress-bar {
       position: sticky;
       top: 0;
-      background: var(--bg);
-      padding: 16px 0;
+      background: rgba(250, 246, 240, .92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 10;
       border-bottom: 1px solid var(--border);
-      margin: -32px -20px 24px;
-      padding: 16px 20px;
+      margin: -32px -20px 22px;
+      padding: 14px 20px 12px;
     }
 
     .progress-info {
@@ -280,25 +313,32 @@
       height: 100%;
       background: linear-gradient(90deg, var(--accent2), var(--accent));
       width: 0%;
-      transition: width .3s ease;
+      transition: width .35s cubic-bezier(.4, 0, .2, 1);
+      border-radius: 2px;
     }
 
     .qcard {
       background: var(--card);
       border: 1.5px solid var(--border);
       border-radius: 16px;
-      padding: 32px 28px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .05);
-      min-height: 280px;
+      padding: 28px 24px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-md);
+      min-height: 240px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      animation: cardIn .25s ease;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .qnum {
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: 1.5px;
       color: var(--muted);
       text-transform: uppercase;
@@ -307,39 +347,46 @@
 
     .qtext {
       font-family: var(--font-display);
-      font-size: clamp(22px, 4vw, 28px);
+      font-size: clamp(20px, 5vw, 26px);
       font-weight: 700;
       line-height: 1.4;
       color: var(--ink);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
+      letter-spacing: -.005em;
     }
 
     .qopts {
       display: grid;
-      gap: 10px;
+      gap: 8px;
     }
 
     .qopt {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       background: var(--bg);
       border: 1.5px solid var(--border);
       border-radius: 10px;
-      padding: 16px 18px;
+      padding: 14px 16px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 15.5px;
       transition: all .15s ease;
       text-align: left;
       width: 100%;
       font-family: var(--font-body);
       color: var(--ink);
+      min-height: 50px;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .qopt:hover {
       border-color: var(--accent2);
       background: rgba(230, 126, 34, .06);
-      transform: translateX(4px);
+    }
+
+    .qopt:active {
+      transform: scale(.985);
     }
 
     .qopt.selected {
@@ -378,28 +425,25 @@
       gap: 12px;
     }
 
-    .qnav .btn.outline {
-      flex: 0 0 auto;
-    }
-
-    .qnav-spacer { flex: 1; }
-
-    /* === Result Screen === */
+    /* ============================================================ */
+    /* RESULT SCREEN */
+    /* ============================================================ */
     .rscreen { display: none; }
-    .rscreen.active { display: block; }
+    .rscreen.active { display: block; animation: fadeIn .35s ease; }
 
     .result-card {
       background: var(--card);
-      border-radius: 20px;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, .08);
+      border-radius: 18px;
+      box-shadow: var(--shadow-lg);
       overflow: hidden;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
 
+    /* --- HERO --- */
     .result-hero {
       background: linear-gradient(135deg, #2d2520 0%, #1a1410 100%);
       color: var(--bg);
-      padding: 36px 28px 32px;
+      padding: 32px 26px 28px;
       position: relative;
       overflow: hidden;
     }
@@ -408,8 +452,8 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
-      opacity: .5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+      opacity: .6;
       pointer-events: none;
     }
 
@@ -417,73 +461,94 @@
 
     .result-kicker {
       font-family: var(--font-mono);
-      font-size: 12px;
-      letter-spacing: 3px;
+      font-size: 11.5px;
+      letter-spacing: 2.8px;
       color: var(--accent2);
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .result-title {
       font-family: var(--font-display);
-      font-size: clamp(28px, 5vw, 40px);
+      font-size: clamp(28px, 6vw, 42px);
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 1.12;
+      letter-spacing: -.01em;
       margin-bottom: 18px;
     }
 
     .top3-codes {
       display: flex;
-      gap: 14px;
-      margin-bottom: 18px;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
     }
 
     .top3-codes .badge {
-      width: 60px;
-      height: 60px;
+      flex: 1;
+      min-width: 80px;
+      padding: 14px 8px 12px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, .1);
+      background: rgba(255, 255, 255, .08);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-display);
-      font-weight: 900;
+      gap: 4px;
       backdrop-filter: blur(8px);
       border: 1.5px solid rgba(255, 255, 255, .15);
     }
 
+    .top3-codes .badge .rank {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(250, 246, 240, .65);
+      letter-spacing: 1.2px;
+      font-weight: 600;
+    }
+
     .top3-codes .badge .l {
-      font-size: 28px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 32px;
       line-height: 1;
     }
 
-    .top3-codes .badge .r {
-      font-size: 10px;
-      font-family: var(--font-mono);
-      color: rgba(250, 246, 240, .6);
-      margin-top: 4px;
-      letter-spacing: 1px;
+    .top3-codes .badge .nm {
+      font-size: 12px;
+      color: rgba(250, 246, 240, .75);
+      margin-top: 2px;
     }
 
-    .top3-codes .badge.rank-1 { background: rgba(230, 126, 34, .25); border-color: var(--accent2); }
+    .top3-codes .badge.rank-1 {
+      background: rgba(230, 126, 34, .22);
+      border-color: var(--accent2);
+    }
     .top3-codes .badge.rank-1 .l { color: var(--accent2); }
-    .top3-codes .badge.rank-2 { background: rgba(212, 160, 23, .2); border-color: var(--gold); }
+
+    .top3-codes .badge.rank-2 {
+      background: rgba(212, 160, 23, .18);
+      border-color: var(--gold);
+    }
     .top3-codes .badge.rank-2 .l { color: var(--gold); }
-    .top3-codes .badge.rank-3 { background: rgba(255, 255, 255, .1); }
-    .top3-codes .badge.rank-3 .l { color: rgba(255, 255, 255, .9); }
+
+    .top3-codes .badge.rank-3 {
+      background: rgba(255, 255, 255, .08);
+    }
+    .top3-codes .badge.rank-3 .l { color: rgba(255, 255, 255, .92); }
 
     .result-tagline {
       font-family: var(--font-display);
-      font-size: 18px;
+      font-size: clamp(16px, 4vw, 19px);
       font-weight: 700;
-      color: rgba(250, 246, 240, .92);
-      line-height: 1.5;
+      color: rgba(250, 246, 240, .94);
+      line-height: 1.55;
+      letter-spacing: .005em;
     }
 
-    /* Score bars */
+    /* --- SCORES --- */
     .scores {
-      padding: 28px 28px 20px;
+      padding: 22px 26px 18px;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
     }
@@ -494,22 +559,22 @@
       letter-spacing: 2px;
       color: var(--muted);
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .score-row {
       display: grid;
-      grid-template-columns: 36px 1fr 50px;
+      grid-template-columns: 28px 1fr 52px;
       align-items: center;
       gap: 12px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
       font-size: 14px;
     }
 
     .score-row .code-l {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: 18px;
+      font-size: 17px;
     }
 
     .score-row.r .code-l { color: var(--r); }
@@ -520,7 +585,7 @@
     .score-row.c .code-l { color: var(--c); }
 
     .bar-track {
-      height: 10px;
+      height: 9px;
       background: var(--border);
       border-radius: 5px;
       overflow: hidden;
@@ -529,7 +594,7 @@
     .bar-fill {
       height: 100%;
       border-radius: 5px;
-      transition: width .8s ease;
+      transition: width .9s cubic-bezier(.4, 0, .2, 1);
     }
 
     .r .bar-fill { background: var(--r); }
@@ -541,15 +606,15 @@
 
     .score-row .pct {
       font-family: var(--font-mono);
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--ink);
       font-weight: 600;
       text-align: right;
     }
 
-    /* Sections */
+    /* --- RESULT SECTIONS (overview style) --- */
     .rsection {
-      padding: 26px 28px;
+      padding: 26px 26px 22px;
       border-bottom: 1px solid var(--border);
     }
 
@@ -559,12 +624,12 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     .rsection-title .icon {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       border-radius: 8px;
       background: var(--accent2);
       color: #fff;
@@ -573,107 +638,162 @@
       justify-content: center;
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: 16px;
+      font-size: 15px;
+      flex-shrink: 0;
     }
 
     .rsection-title h2 {
       font-family: var(--font-display);
-      font-size: 22px;
+      font-size: clamp(19px, 4.5vw, 22px);
       font-weight: 700;
       color: var(--ink);
+      line-height: 1.3;
     }
 
-    .rsection p {
-      color: var(--ink2);
-      line-height: 1.75;
-      margin-bottom: 12px;
+    .rsection-sub {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-style: italic;
+      line-height: 1.6;
     }
 
-    .rsection p strong {
-      color: var(--ink);
-      font-weight: 700;
-    }
-
-    .trait-grid {
+    /* Composed layers */
+    .layer {
       display: grid;
-      gap: 14px;
-      margin-top: 16px;
-    }
-
-    .trait-item {
-      display: grid;
-      grid-template-columns: 36px 1fr;
+      grid-template-columns: 56px 1fr;
       gap: 14px;
       align-items: start;
-      padding: 14px 16px;
-      background: var(--bg);
-      border-radius: 10px;
-      border-left: 3px solid var(--accent2);
+      padding: 14px 0;
+      position: relative;
     }
 
-    .trait-item.r { border-left-color: var(--r); }
-    .trait-item.i { border-left-color: var(--i); }
-    .trait-item.a { border-left-color: var(--a); }
-    .trait-item.s { border-left-color: var(--s); }
-    .trait-item.e { border-left-color: var(--e); }
-    .trait-item.c { border-left-color: var(--c); }
+    .layer + .layer {
+      border-top: 1px dashed var(--border);
+    }
 
-    .trait-item .tag {
+    .layer .layer-mark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .layer .rank-num {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+
+    .layer .code-letter {
       font-family: var(--font-display);
       font-weight: 900;
-      font-size: 22px;
+      font-size: 30px;
       line-height: 1;
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: var(--bg2);
     }
 
-    .trait-item.r .tag { color: var(--r); background: rgba(230, 126, 34, .12); }
-    .trait-item.i .tag { color: var(--i); background: rgba(30, 77, 140, .12); }
-    .trait-item.a .tag { color: var(--a); background: rgba(107, 62, 122, .12); }
-    .trait-item.s .tag { color: var(--s); background: rgba(26, 122, 110, .12); }
-    .trait-item.e .tag { color: var(--e); background: rgba(192, 57, 43, .1); }
-    .trait-item.c .tag { color: var(--c); background: rgba(122, 110, 101, .12); }
+    .layer.r .code-letter { color: var(--r); background: rgba(230, 126, 34, .12); }
+    .layer.i .code-letter { color: var(--i); background: rgba(30, 77, 140, .1); }
+    .layer.a .code-letter { color: var(--a); background: rgba(107, 62, 122, .1); }
+    .layer.s .code-letter { color: var(--s); background: rgba(26, 122, 110, .1); }
+    .layer.e .code-letter { color: var(--e); background: rgba(192, 57, 43, .08); }
+    .layer.c .code-letter { color: var(--c); background: rgba(122, 110, 101, .12); }
 
-    .trait-item .body {
-      font-size: 15px;
+    /* Rank emphasis */
+    .layer.rank-1 .code-letter {
+      width: 50px;
+      height: 50px;
+      font-size: 34px;
+      box-shadow: 0 0 0 2px var(--accent2);
+    }
+    .layer.rank-1 .rank-num {
+      color: var(--accent2);
+      font-weight: 700;
+    }
+    .layer.rank-2 .rank-num { color: var(--ink2); }
+
+    .layer .body {
+      padding-top: 4px;
+    }
+
+    .layer.rank-1 .body {
+      font-size: 16.5px;
       line-height: 1.65;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .layer.rank-2 .body {
+      font-size: 15px;
+      line-height: 1.7;
       color: var(--ink2);
     }
 
-    .trait-item .body b {
+    .layer.rank-3 .body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .layer .body b {
       color: var(--ink);
       font-weight: 700;
     }
 
+    .layer.rank-1 .body b {
+      background: linear-gradient(180deg, transparent 60%, rgba(230, 126, 34, .25) 60%);
+      padding: 0 2px;
+    }
+
+    /* --- Jobs list --- */
+    .jobs-box {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1.5px solid var(--border);
+    }
+
+    .jobs-box h4 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
     .jobs-list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-top: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 6px;
     }
 
     .jobs-list span {
-      font-size: 14px;
+      font-size: 13.5px;
       padding: 8px 12px;
-      background: var(--bg2);
+      background: var(--bg);
       border-radius: 6px;
       color: var(--ink2);
-      border-left: 2px solid var(--accent2);
+      border-left: 2.5px solid var(--accent2);
     }
 
+    /* --- Blindspot --- */
     .blindspot {
       background: rgba(192, 57, 43, .05);
-      padding: 14px 18px;
+      padding: 16px 18px;
       border-radius: 10px;
       border-left: 3px solid var(--accent);
       margin-top: 12px;
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.75;
       color: var(--ink2);
     }
 
@@ -682,29 +802,36 @@
       font-weight: 700;
     }
 
-    .footer-meta {
-      text-align: center;
-      padding: 24px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 1.5px;
-      background: var(--bg2);
+    .blindspot b {
+      color: var(--ink);
+      font-weight: 700;
     }
 
-    .footer-meta a {
+    /* --- Footer --- */
+    .footer-meta {
+      text-align: center;
+      padding: 20px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
       color: var(--muted);
-      text-decoration: underline;
+      letter-spacing: 1.2px;
+      background: var(--bg2);
     }
 
     .result-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
       justify-content: center;
-      margin-top: 28px;
+      margin-top: 24px;
     }
 
+    .result-actions .btn {
+      flex: 1 1 auto;
+      min-width: 140px;
+    }
+
+    /* --- Toast --- */
     .toast {
       position: fixed;
       bottom: 24px;
@@ -712,14 +839,15 @@
       transform: translateX(-50%) translateY(20px);
       background: var(--ink);
       color: var(--bg);
-      padding: 12px 22px;
+      padding: 11px 20px;
       border-radius: 999px;
-      font-size: 14px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+      font-size: 13.5px;
+      box-shadow: var(--shadow-lg);
       opacity: 0;
       pointer-events: none;
       transition: all .25s ease;
       z-index: 100;
+      max-width: calc(100vw - 32px);
     }
 
     .toast.show {
@@ -727,24 +855,73 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    @media (max-width: 600px) {
-      .wrap { padding: 20px 16px 60px; }
-      .meta-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
-      .meta-grid .val { font-size: 16px; }
-      .qcard { padding: 24px 20px; min-height: 240px; }
-      .rsection { padding: 22px 20px; }
-      .scores { padding: 22px 20px 16px; }
-      .result-hero { padding: 28px 22px 26px; }
-      .top3-codes .badge { width: 52px; height: 52px; }
+    /* ============================================================ */
+    /* RWD BREAKPOINTS */
+    /* ============================================================ */
+
+    /* Tablet & smaller laptop */
+    @media (max-width: 720px) {
+      .wrap { padding: 24px 16px 60px; }
+      .progress-bar { margin: -24px -16px 18px; padding: 12px 16px 10px; }
+      .meta-grid { gap: 10px; padding-top: 14px; margin: 20px 0 24px; }
+      .qcard { padding: 24px 20px; min-height: 220px; margin-bottom: 14px; }
+      .rsection { padding: 22px 20px 18px; }
+      .scores { padding: 20px 20px 14px; }
+      .result-hero { padding: 28px 22px 24px; }
+      .top3-codes .badge { padding: 12px 6px 10px; min-width: 0; }
+      .top3-codes .badge .l { font-size: 28px; }
+      .top3-codes .badge .nm { font-size: 11px; }
+      .layer { grid-template-columns: 48px 1fr; gap: 12px; padding: 12px 0; }
+      .layer .code-letter { width: 40px; height: 40px; font-size: 26px; }
+      .layer.rank-1 .code-letter { width: 44px; height: 44px; font-size: 30px; }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+      .wrap { padding: 20px 14px 50px; }
+      .intro h1 { margin-bottom: 14px; }
+      .codes-preview { padding: 14px 14px 12px; }
+      .code-chip { padding: 8px 2px 6px; }
+      .code-chip .l { font-size: 18px; }
+      .code-chip .n { font-size: 9.5px; }
+      .actions { gap: 10px; }
+      .btn { font-size: 15px; padding: 13px 22px; min-height: 46px; }
+      .btn.small { padding: 10px 14px; font-size: 13.5px; min-height: 38px; }
+      .qcard { padding: 22px 18px; }
+      .qopt { padding: 13px 14px; font-size: 15px; gap: 10px; }
+      .rsection { padding: 20px 18px 16px; }
+      .result-hero { padding: 26px 20px 22px; }
+      .scores { padding: 18px 18px 12px; }
+      .score-row { grid-template-columns: 24px 1fr 46px; gap: 10px; }
+      .score-row .pct { font-size: 11.5px; }
+      .top3-codes { gap: 8px; }
+      .top3-codes .badge { padding: 10px 4px 8px; gap: 2px; }
       .top3-codes .badge .l { font-size: 24px; }
-      .jobs-list { grid-template-columns: 1fr; }
-      .trait-item { grid-template-columns: 30px 1fr; gap: 10px; padding: 12px 14px; }
-      .trait-item .tag { width: 30px; height: 30px; font-size: 18px; }
+      .top3-codes .badge .rank { font-size: 9.5px; }
+      .top3-codes .badge .nm { font-size: 10.5px; }
+      .layer { grid-template-columns: 42px 1fr; gap: 10px; }
+      .layer .code-letter { width: 36px; height: 36px; font-size: 22px; }
+      .layer.rank-1 .code-letter { width: 40px; height: 40px; font-size: 26px; }
+      .layer.rank-1 .body { font-size: 15px; }
+      .layer.rank-2 .body { font-size: 14px; }
+      .layer.rank-3 .body { font-size: 13px; }
+      .jobs-list { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+      .jobs-list span { font-size: 12.5px; padding: 7px 10px; }
+      .result-actions .btn { min-width: 0; flex: 1 1 calc(50% - 5px); }
+      .rsection-title h2 { font-size: 18px; }
     }
 
     @media print {
       body { background: #fff; }
       .progress-bar, .qnav, .result-actions, .toast { display: none !important; }
+      .result-card { box-shadow: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
     }
   </style>
 </head>
@@ -759,7 +936,7 @@
       <div class="kicker">HOLLAND CODES · RIASEC · 職涯六型</div>
       <h1>找出你的 <em>Top 3</em><br>職涯人格組合</h1>
       <p class="lead">
-        Holland 六型理論把每個人對工作的偏好拆成 6 種傾向。
+        Holland 把每個人對工作的偏好拆成 6 種傾向。
         多數人不是「單一型」，而是 <strong>3 個碼的組合</strong>——
         這個組合，比任何單一標籤都更接近真實的你。
       </p>
@@ -767,15 +944,15 @@
       <div class="meta-grid">
         <div>
           <div class="lab">題數</div>
-          <div class="val">60 題</div>
+          <div class="val">36 題</div>
         </div>
         <div>
           <div class="lab">時間</div>
-          <div class="val">~ 8 分鐘</div>
+          <div class="val">~ 5 分鐘</div>
         </div>
         <div>
           <div class="lab">結果</div>
-          <div class="val">Top 3 組合</div>
+          <div class="val">Top 3 縱覽</div>
         </div>
       </div>
 
@@ -792,12 +969,10 @@
       </div>
 
       <div class="actions">
-        <button class="btn accent" onclick="startTest()">
-          開始測評 →
-        </button>
+        <button class="btn accent" onclick="startTest()">開始測評 →</button>
       </div>
       <div class="small-note">
-        ※ 沒有對錯。憑直覺作答最準。結果可以下載成圖片分享 / 留存。
+        ※ 沒有對錯。憑直覺作答最準。結果可下載成圖片分享。
       </div>
     </section>
 
@@ -807,8 +982,8 @@
     <section id="qscreen" class="qscreen">
       <div class="progress-bar">
         <div class="progress-info">
-          <span>進度 · <strong id="qcur">1</strong> / 60</span>
-          <span id="qpct">2%</span>
+          <span>進度 · <strong id="qcur">1</strong> / 36</span>
+          <span id="qpct">3%</span>
         </div>
         <div class="progress-track">
           <div class="progress-fill" id="qfill"></div>
@@ -816,14 +991,13 @@
       </div>
 
       <div class="qcard">
-        <div class="qnum" id="qnum">Q01 / 60</div>
+        <div class="qnum" id="qnum">Q01 / 36</div>
         <div class="qtext" id="qtext"></div>
         <div class="qopts" id="qopts"></div>
       </div>
 
       <div class="qnav">
         <button class="btn outline small" id="qback" onclick="prevQuestion()">← 上一題</button>
-        <div class="qnav-spacer"></div>
         <button class="btn small" id="qnext" onclick="nextQuestion()" disabled>下一題 →</button>
       </div>
     </section>
@@ -847,81 +1021,59 @@
 
   <script>
     // ============================================================
-    // QUESTIONS (60: 10 per code)
+    // QUESTIONS · 36 = 6 per code
     // ============================================================
     const QUESTIONS = [
-      // === R · 實作型 ===
+      // R · 實作型
       { code: 'R', text: '看到壞掉的東西，我會想拆開來修。' },
       { code: 'R', text: '我喜歡可以動手做的工作，勝過坐在電腦前。' },
       { code: 'R', text: '比起讀書，我更想學一門技術（修車 / 烹飪 / 木工 / 美髮）。' },
       { code: 'R', text: '室外運動、勞動讓我很有精神。' },
-      { code: 'R', text: '我寧可花一天裝好家具，也不要花一天寫報告。' },
-      { code: 'R', text: '看到別人在做工，我會多看兩眼，好奇怎麼做的。' },
-      { code: 'R', text: '我能忍受重複動作、體力消耗的工作。' },
-      { code: 'R', text: '比起用嘴溝通，我更習慣直接做給對方看。' },
       { code: 'R', text: '工具、器材、機器很吸引我。' },
-      { code: 'R', text: '我喜歡能流汗的工作。' },
+      { code: 'R', text: '我能忍受重複動作、體力消耗的工作。' },
 
-      // === I · 研究型 ===
+      // I · 研究型
       { code: 'I', text: '我對「為什麼」這種問題很有興趣。' },
-      { code: 'I', text: '看完一部劇我會想搞清楚劇情邏輯。' },
       { code: 'I', text: '我能花很長時間獨自鑽研一個主題。' },
-      { code: 'I', text: '我喜歡找出規律、模式。' },
       { code: 'I', text: '維基百科 / YouTube 教學，我會一個連結點下去停不下來。' },
       { code: 'I', text: '比起靠直覺，我更相信數據與證據。' },
       { code: 'I', text: '沒搞懂的事我會睡不著。' },
-      { code: 'I', text: '我喜歡讀資料、做筆記、整理知識。' },
-      { code: 'I', text: '我能享受獨處與自我對話。' },
       { code: 'I', text: '解謎、推理、密室類遊戲讓我興奮。' },
 
-      // === A · 藝術型 ===
+      // A · 藝術型
       { code: 'A', text: '我不喜歡所有東西都要照規矩來。' },
-      { code: 'A', text: '看到醜的東西我會想改。' },
       { code: 'A', text: '我有「想要做出原本沒有的東西」的衝動。' },
-      { code: 'A', text: '我喜歡發揮想像力。' },
       { code: 'A', text: '表演、寫作、繪畫、攝影至少有一樣我特別享受。' },
       { code: 'A', text: '我寧可獨特，也不要安全。' },
       { code: 'A', text: '美感對我來說很重要，連選一個 IG 字體都會挑。' },
-      { code: 'A', text: '我抗拒太多 SOP 的工作。' },
-      { code: 'A', text: '我喜歡有自己風格的人。' },
       { code: 'A', text: '我能想出別人沒想過的點子。' },
 
-      // === S · 社會型 ===
+      // S · 社會型
       { code: 'S', text: '看到朋友難過，我會想多陪一下。' },
-      { code: 'S', text: '我喜歡聽別人的故事。' },
       { code: 'S', text: '教別人東西讓我有成就感。' },
       { code: 'S', text: '我能感覺到別人沒說出口的情緒。' },
-      { code: 'S', text: '我會主動關心身邊的人。' },
       { code: 'S', text: '我寧可花時間幫人，也不太計較回報。' },
-      { code: 'S', text: '我習慣在群體裡照顧氣氛。' },
       { code: 'S', text: '我能耐心面對小孩、長輩、節奏比較慢的人。' },
-      { code: 'S', text: '看到不公平的事我會想出聲。' },
       { code: 'S', text: '一群人聊天時，我喜歡讓每個人都被聽到。' },
 
-      // === E · 企業型 ===
+      // E · 企業型
       { code: 'E', text: '我能說服別人接受我的想法。' },
       { code: 'E', text: '在小組裡，我常變成那個「拍板的」。' },
       { code: 'E', text: '我喜歡能看到成績 / 業績的工作。' },
       { code: 'E', text: '我願意承擔風險換取更大的回報。' },
-      { code: 'E', text: '我能主動找客人 / 找機會。' },
       { code: 'E', text: '比起做被分配的事，我更想自己決定要做什麼。' },
-      { code: 'E', text: '我能在壓力下做決定。' },
-      { code: 'E', text: '我喜歡帶人、給方向。' },
-      { code: 'E', text: '跟陌生人聊天我不會緊張。' },
       { code: 'E', text: '我會想「這件事可以怎麼變成錢」。' },
 
-      // === C · 事務型 ===
+      // C · 事務型
       { code: 'C', text: '我看到亂的東西會想整理。' },
       { code: 'C', text: '我喜歡按表操課。' },
-      { code: 'C', text: '我能享受重複性的工作（打字、貼標籤、整理檔案）。' },
       { code: 'C', text: '我會把行事曆 / 筆記寫得很整齊。' },
-      { code: 'C', text: '我抗拒「先做再說」，喜歡先規劃好。' },
       { code: 'C', text: '規律的生活讓我安心。' },
       { code: 'C', text: '我能注意到別人沒注意到的小細節。' },
-      { code: 'C', text: '我喜歡有 SOP 的工作。' },
-      { code: 'C', text: '我看數字會比看文字更快理解。' },
       { code: 'C', text: '拖延、混亂讓我焦慮。' },
     ];
+
+    const MAX_PER_CODE = 6 * 3; // 6 questions × max score 3 = 18
 
     const OPTIONS = [
       { label: '非常符合', score: 3 },
@@ -934,79 +1086,143 @@
     // CODE METADATA
     // ============================================================
     const CODES = {
-      R: { letter: 'R', name: '實作型', kw: '動手 · 戶外 · 機械 · 操作', color: 'r' },
-      I: { letter: 'I', name: '研究型', kw: '分析 · 邏輯 · 解謎 · 累積', color: 'i' },
-      A: { letter: 'A', name: '藝術型', kw: '創作 · 自由 · 表達 · 美感', color: 'a' },
-      S: { letter: 'S', name: '社會型', kw: '幫人 · 教學 · 服務 · 共感', color: 's' },
-      E: { letter: 'E', name: '企業型', kw: '領導 · 銷售 · 承擔 · 結果', color: 'e' },
-      C: { letter: 'C', name: '事務型', kw: '細心 · 規律 · 制度 · 整理', color: 'c' },
+      R: { letter: 'R', name: '實作型', kw: '動手 · 戶外 · 機械' },
+      I: { letter: 'I', name: '研究型', kw: '分析 · 邏輯 · 解謎' },
+      A: { letter: 'A', name: '藝術型', kw: '創作 · 自由 · 美感' },
+      S: { letter: 'S', name: '社會型', kw: '幫人 · 教學 · 共感' },
+      E: { letter: 'E', name: '企業型', kw: '領導 · 銷售 · 承擔' },
+      C: { letter: 'C', name: '事務型', kw: '細心 · 規律 · 制度' },
     };
 
     // ============================================================
-    // PER-CODE DESCRIPTIONS
+    // PER-CODE LAYERED DESCRIPTIONS
+    // 每碼依「擔任 Top 1 / Top 2 / Top 3」給三種口吻，組合成縱覽
     // ============================================================
-    const CODE_DESC = {
+    const LAYERS = {
       R: {
-        trait: '<b>用身體與工具直接處理世界。</b>偏好看得見、摸得到的成果，不愛抽象空談。耐力好、能忍受重複，相信「做了才知道」。',
-        career: '修理 · 操作 · 製作 · 戶外 · 現場類工作。喜歡用結果說話，不愛冗長會議。',
-        comm: '直接、不繞圈、行動勝過言語。會用「我做給你看」代替長篇解釋。',
-        jobs: ['廚師', '機車技師', '水電師傅', '警察', '消防員', '志願役', '健身教練', '美髮師', '潛水教練', '海巡'],
+        trait: {
+          lead: '你的主軸是<b>動手做、用結果說話</b>——不愛空談，需要看得到、摸得到、做得出來的事，才覺得自己活著。',
+          support: '外加一層<b>動手實作</b>的底——你願意自己捲起袖子做，不把所有事丟給別人。',
+          under: '再往下還有一點<b>動手</b>的能量——當事情真要落地時，你不怕髒。',
+        },
+        career: {
+          lead: '最熱情的方向是<b>動手、操作、製作、現場類</b>工作——廚房、工地、戶外、實作專業。',
+          support: '同時也願意進到<b>動手實作</b>的領域——你不會只想坐辦公室。',
+          under: '對<b>現場工作</b>也保有開放度——能接受流汗、能接受體力消耗。',
+        },
+        comm: {
+          lead: '溝通上<b>直接、不繞圈、用做的代替說的</b>——別人問你為什麼，你會用實際成果回答。',
+          support: '同時也偏好<b>少廢話</b>的溝通——重點先講，不愛冗長。',
+          under: '表達上有一點<b>務實</b>的味道——你不太說空話。',
+        },
       },
       I: {
-        trait: '<b>把複雜的事拆開來搞清楚。</b>對「為什麼」有耐心，能獨自鑽研一個主題很久。相信邏輯與證據，看到模糊會不安。',
-        career: '研究 · 分析 · 解謎 · 累積專業 · 解問題類工作。喜歡能深入鑽研的領域。',
-        comm: '精確、邏輯導向、習慣問問題。會在下結論前先確認前提。',
-        jobs: ['軟體工程師', '數據分析師', 'AI 工程師', '護理師', '藥師', '醫檢師', '會計師', '機械工程師', '律師', '醫師'],
+        trait: {
+          lead: '你的主軸是<b>鑽研到底、找清楚原因</b>——對「為什麼」有耐心，沒搞懂之前不會輕易往前。',
+          support: '外加一層<b>鑽研到底</b>的底——你會在動手前先想清楚邏輯，不會盲衝。',
+          under: '再往下還有一點<b>好奇與鑽研</b>的傾向——別人不問了，你還會多想一層。',
+        },
+        career: {
+          lead: '最熱情的方向是<b>研究、分析、解問題</b>類工作——軟體、醫療、學術、深度專業。',
+          support: '同時對<b>鑽研型</b>工作有興趣——你能享受長期累積專業的過程。',
+          under: '對<b>深入專業</b>的領域也保有開放度——你願意當「最懂的那個」。',
+        },
+        comm: {
+          lead: '溝通上<b>精確、邏輯導向、會先問前提</b>——別人下結論時，你會先問清楚定義。',
+          support: '同時也偏好<b>有理有據</b>的溝通——你不滿足於模糊的答覆。',
+          under: '表達上有一點<b>思考型</b>的味道——你會停一下再說。',
+        },
       },
       A: {
-        trait: '<b>想創造原本不存在的東西。</b>重視表達與獨特性，不愛被規範。對美感敏感，看到醜的會想改。',
-        career: '創作 · 設計 · 表演 · 自由發揮類工作。需要能呈現個人風格的舞台。',
-        comm: '形象化、感性、有畫面感。常用比喻、舉例、故事傳達想法。',
-        jobs: ['平面設計師', 'UI / UX 設計師', '室內設計師', '攝影師', '影像剪輯', '小編', '文案', 'KOL / YouTuber', '插畫家', '建築設計師'],
+        trait: {
+          lead: '你的主軸是<b>創造、做出原本不存在的東西</b>——重視美感與獨特性，無法接受千篇一律。',
+          support: '外加一層<b>創意與美感</b>的底——你會想把事情做得有風格，不只是完成。',
+          under: '再往下還有一點<b>個性與表達</b>的能量——當需要原創時，你拿得出東西。',
+        },
+        career: {
+          lead: '最熱情的方向是<b>創作、設計、表達</b>類工作——平面、攝影、影像、文案、品牌。',
+          support: '同時對<b>創意產業</b>有興趣——能跟設計、內容、表達有關的職位都很適合。',
+          under: '對<b>有風格的工作</b>也保有開放度——你不會選太僵化的環境。',
+        },
+        comm: {
+          lead: '溝通上<b>形象化、有畫面、會用故事</b>——你不愛硬邦邦的條列，會用比喻把話講活。',
+          support: '同時也偏好<b>有溫度的表達</b>——你不會講得太枯燥。',
+          under: '表達上有一點<b>感性</b>的味道——關鍵時刻你能說到人心裡。',
+        },
       },
       S: {
-        trait: '<b>透過人、為了人工作。</b>能感覺別人沒說出口的情緒，被需要會有動力。重視關係勝過效率。',
-        career: '教學 · 輔導 · 照護 · 服務人群類工作。需要「我幫到誰」的回饋。',
-        comm: '溫暖、會傾聽、考慮對方感受。會先處理情緒，再處理事情。',
-        jobs: ['國中小老師', '幼教', '社工', '心理諮商', '物理治療師', '長照員', '空服員', '飯店服務', 'NGO 工作者', '導遊'],
+        trait: {
+          lead: '你的主軸是<b>陪伴與引導</b>——能聽、能共感，會把人放在心上。',
+          support: '外加一層<b>關心人</b>的底——你不只顧事情，也會看見現場每個人的狀態。',
+          under: '再往下還有一點<b>同理心</b>——當別人受傷時，你會停下來。',
+        },
+        career: {
+          lead: '最熱情的方向是<b>教學、輔導、服務人</b>類工作——教育、心理、護理、長照。',
+          support: '同時也適合<b>與人接觸</b>的職位——你能享受「我幫到誰」的回饋。',
+          under: '對<b>有人情味的工作</b>也保有開放度——不適合純機械式作業。',
+        },
+        comm: {
+          lead: '溝通上<b>溫暖、會傾聽、先處理情緒再處理事</b>——別人在你面前願意說真話。',
+          support: '同時也偏好<b>照顧對方</b>的表達——不會只講自己的立場。',
+          under: '表達上有一點<b>共感</b>的味道——你能讀懂對方沒說的部分。',
+        },
       },
       E: {
-        trait: '<b>帶動別人、為結果負責。</b>能說服、能決策、能承擔。比起執行，更想決定方向。',
-        career: '銷售 · 創業 · 領導 · 影響類工作。需要看得到「自己做的決定變成了什麼」。',
-        comm: '自信、有說服力、目標導向。會主導對話節奏，講重點不繞圈。',
-        jobs: ['B2B 業務', '保險 / 房仲', '行銷企劃', '店長', '創業老闆', '專案經理 PM', '自媒體', '電商賣家', '管理顧問', '加盟業主'],
+        trait: {
+          lead: '你的主軸是<b>推動、讓事情成</b>——能做決定、能扛責任、能說服別人一起動。',
+          support: '外加一層<b>推動成事</b>的底——當別人在想時，你會主動把事情推進一步。',
+          under: '再往下還有一點<b>主動出擊</b>的能量——必要時你不會躲在後面。',
+        },
+        career: {
+          lead: '最熱情的方向是<b>銷售、創業、領導</b>類工作——業務、店長、企劃、自媒體。',
+          support: '同時對<b>推動結果</b>的職位有興趣——專案管理、品牌經理、營運。',
+          under: '對<b>有主導空間的工作</b>也保有開放度——不喜歡完全聽令。',
+        },
+        comm: {
+          lead: '溝通上<b>自信、有說服力、目標導向</b>——你會主導對話節奏，把話題帶到結論。',
+          support: '同時也偏好<b>推進式</b>的表達——對話完通常會有下一步動作。',
+          under: '表達上有一點<b>主動</b>的味道——你不會被冷場壓住。',
+        },
       },
       C: {
-        trait: '<b>用秩序處理混亂。</b>細心、可靠、不愛意外。看到亂的會想整理，按 SOP 做事不痛苦反而安心。',
-        career: '整理 · 規劃 · 執行 · 流程類工作。需要清楚的框架與可預期的節奏。',
-        comm: '條理分明、注意細節、求精準。會在開始前把流程列清楚。',
-        jobs: ['行政助理', '會計 / 出納', '人資', '銀行行員', '公部門基層', '採購', '品管 QC', '醫院行政', '倉管', '秘書'],
+        trait: {
+          lead: '你的主軸是<b>有條理、講制度</b>——重視秩序與細節，看到亂的會想整理。',
+          support: '外加一層<b>重秩序</b>的底——你能把雜事整理出框架，讓事情不會散掉。',
+          under: '再往下還有一點<b>細心</b>的傾向——關鍵細節不會被你漏掉。',
+        },
+        career: {
+          lead: '最熱情的方向是<b>整理、規劃、執行</b>類工作——行政、會計、銀行、公部門。',
+          support: '同時對<b>有制度的職位</b>有興趣——你能在框架內把事情做好。',
+          under: '對<b>穩定、可預期的工作</b>也保有開放度——不愛動盪環境。',
+        },
+        comm: {
+          lead: '溝通上<b>條理分明、有結構、注重細節</b>——你會把流程講清楚再開始。',
+          support: '同時也偏好<b>精確</b>的表達——你不愛模糊的「大概」「可能」。',
+          under: '表達上有一點<b>周到</b>的味道——重要細節你會主動補上。',
+        },
       },
     };
 
+    const JOB_LISTS = {
+      R: ['廚師', '機車技師', '水電師傅', '警察', '消防員', '志願役', '健身教練', '美髮師', '潛水教練', '海巡'],
+      I: ['軟體工程師', '數據分析師', 'AI 工程師', '護理師', '藥師', '醫檢師', '會計師', '機械工程師', '律師', '醫師'],
+      A: ['平面設計師', 'UI / UX 設計師', '室內設計師', '攝影師', '影像剪輯', '小編', '文案', 'KOL / YouTuber', '插畫家', '建築設計'],
+      S: ['國中小老師', '幼教', '社工', '心理諮商', '物理治療師', '長照員', '空服員', '飯店服務', 'NGO 工作者', '導遊'],
+      E: ['B2B 業務', '保險 / 房仲', '行銷企劃', '店長', '創業老闆', '專案經理 PM', '自媒體', '電商賣家', '管理顧問', '加盟業主'],
+      C: ['行政助理', '會計 / 出納', '人資', '銀行行員', '公部門基層', '採購', '品管 QC', '醫院行政', '倉管', '秘書'],
+    };
+
     // ============================================================
-    // COMBO TAGLINES (短句綜合描述)
-    // 主邏輯：top1 = 主軸動詞、top2 = 配色、top3 = 底層調性
+    // COMBO TAGLINES (短句綜合 hero 描述)
     // ============================================================
     const COMBO_VERBS = {
-      R: '動手做',
-      I: '鑽研',
-      A: '創造',
-      S: '陪伴與引導',
-      E: '推動與成事',
-      C: '整理與守序',
+      R: '動手做', I: '鑽研', A: '創造', S: '陪伴與引導', E: '推動成事', C: '整理與守序',
     };
-
     const COMBO_FLAVORS = {
-      R: '實在 / 體力 / 現場',
-      I: '深度 / 邏輯 / 累積',
-      A: '美感 / 風格 / 創意',
-      S: '溫度 / 同理 / 關係',
-      E: '行動 / 結果 / 承擔',
-      C: '秩序 / 細節 / 穩定',
+      R: '實在 / 體力 / 現場', I: '深度 / 邏輯 / 累積', A: '美感 / 風格 / 創意',
+      S: '溫度 / 同理 / 關係', E: '行動 / 結果 / 承擔', C: '秩序 / 細節 / 穩定',
     };
 
-    // 特殊組合（前 30 個有專屬標語），其餘走通用模板
     const SPECIAL_COMBOS = {
       RIA: '你是動手做、鑽研到底、且做出風格的人——適合把專業做到「能展示」的位置。',
       RIE: '你是動手做、鑽研到底、能撐起一攤事情的人——適合技術 + 業務結合的位置。',
@@ -1016,7 +1232,6 @@
       RES: '你是動手做、能成事、又懂人的人——現場主管 / 帶班型人物。',
       REC: '你是動手做、能成事、講制度的人——工程 / 工地 / 製造業的管理層適合你。',
       RSC: '你是動手做、會照顧人、有條理的人——醫護 / 照護 / 餐飲管理路線。',
-
       IRA: '你是先想清楚、會動手、有美感的人——技術 + 設計的交界很適合你。',
       IRE: '你是先想清楚、會動手、能推進事情的人——產品經理或技術創業的胚子。',
       IRS: '你是先想清楚、會動手、會關心人的人——醫療 / 心理 / 教育研究這條路。',
@@ -1024,25 +1239,21 @@
       IAE: '你是鑽研、有風格、能推動的人——適合做專業內容創作者、新興領域開疆者。',
       IEC: '你是鑽研、能成事、講制度的人——顧問 / 分析師 / 金融專業路線。',
       ISC: '你是鑽研、會照顧人、有條理的人——醫療 / 諮商 / 行政專業路線。',
-
       ASE: '你是創作、會照顧人、能推動的人——適合教學型 KOL、教育產品創辦人。',
       AIS: '你是創作、會鑽研、又懂人的人——人文研究 / 內容平台 / 出版線。',
       AEC: '你是創作、能成事、講制度的人——適合做品牌主理人、視覺總監。',
       ASC: '你是創作、會照顧人、有條理的人——設計教育、藝術治療路線。',
       AIE: '你是創作、會鑽研、能推動的人——文化策展 / 新媒體創業適合你。',
       ARE: '你是創作、會動手、能推動的人——適合手作品牌、自有工作室。',
-
       SAE: '你是照顧人、有風格、能推動的人——社會企業、教育創業的胚子。',
       SAI: '你是照顧人、有風格、會鑽研的人——適合做諮商 / 教育 / 心理工作者。',
       SEC: '你是照顧人、能成事、講制度的人——學校處室主任 / 機構管理者。',
       SIE: '你是照顧人、會鑽研、能推動的人——適合做醫療管理、社工督導。',
       SIC: '你是照顧人、會鑽研、有條理的人——護理督導、學校輔導行政。',
-
       ESC: '你是能成事、會照顧人、講制度的人——適合做業務主管、客服總監。',
       EAS: '你是能成事、有風格、又懂人的人——適合做品牌主、行銷總監。',
       EIC: '你是能成事、會鑽研、講制度的人——適合做策略顧問、財務管理。',
       EAC: '你是能成事、有風格、講制度的人——適合做活動總監、創業 COO。',
-
       CES: '你是講制度、能成事、會照顧人的人——適合做營運經理、人資主管。',
       CIE: '你是講制度、會鑽研、能成事的人——適合做財務分析、稽核管理。',
       CAS: '你是講制度、有風格、會照顧人的人——適合做設計專案管理、文化機構營運。',
@@ -1051,7 +1262,6 @@
     function getTagline(top3) {
       const key = top3.join('');
       if (SPECIAL_COMBOS[key]) return SPECIAL_COMBOS[key];
-
       const lead = COMBO_VERBS[top3[0]];
       const support = COMBO_FLAVORS[top3[1]];
       const backbone = COMBO_FLAVORS[top3[2]];
@@ -1067,7 +1277,7 @@
     };
 
     // ============================================================
-    // FLOW
+    // QUESTION FLOW
     // ============================================================
     function startTest() {
       document.getElementById('intro').style.display = 'none';
@@ -1079,16 +1289,17 @@
     function renderQuestion() {
       const i = STATE.cur;
       const q = QUESTIONS[i];
-      document.getElementById('qnum').textContent = `Q${String(i + 1).padStart(2, '0')} / 60`;
+      const total = QUESTIONS.length;
+      document.getElementById('qnum').textContent = `Q${String(i + 1).padStart(2, '0')} / ${total}`;
       document.getElementById('qtext').textContent = q.text;
       document.getElementById('qcur').textContent = i + 1;
-      const pct = Math.round(((i + 1) / QUESTIONS.length) * 100);
+      const pct = Math.round(((i + 1) / total) * 100);
       document.getElementById('qpct').textContent = pct + '%';
       document.getElementById('qfill').style.width = pct + '%';
 
       const optsEl = document.getElementById('qopts');
       optsEl.innerHTML = '';
-      OPTIONS.forEach((opt, idx) => {
+      OPTIONS.forEach((opt) => {
         const btn = document.createElement('button');
         btn.className = 'qopt' + (STATE.answers[i] === opt.score ? ' selected' : '');
         btn.innerHTML = `<span class="dot"></span><span>${opt.label}</span>`;
@@ -1096,7 +1307,7 @@
           STATE.answers[i] = opt.score;
           renderQuestion();
           setTimeout(() => {
-            if (i < QUESTIONS.length - 1) nextQuestion();
+            if (i < total - 1) nextQuestion();
             else updateNextBtn();
           }, 180);
         };
@@ -1119,10 +1330,7 @@
     function nextQuestion() {
       const i = STATE.cur;
       if (STATE.answers[i] === null) return;
-      if (i === QUESTIONS.length - 1) {
-        finish();
-        return;
-      }
+      if (i === QUESTIONS.length - 1) { finish(); return; }
       STATE.cur++;
       renderQuestion();
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1136,15 +1344,20 @@
     }
 
     function finish() {
-      const scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
-      QUESTIONS.forEach((q, i) => {
-        if (STATE.answers[i] !== null) scores[q.code] += STATE.answers[i];
-      });
+      const scores = computeScores();
       renderResult(scores);
     }
 
+    function computeScores() {
+      const s = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+      QUESTIONS.forEach((q, i) => {
+        if (STATE.answers[i] !== null) s[q.code] += STATE.answers[i];
+      });
+      return s;
+    }
+
     // ============================================================
-    // RESULT
+    // RESULT RENDER
     // ============================================================
     function renderResult(scores) {
       document.getElementById('qscreen').classList.remove('active');
@@ -1152,26 +1365,43 @@
 
       const ranked = Object.entries(scores)
         .sort((a, b) => b[1] - a[1])
-        .map(([code, score]) => ({ code, score, pct: Math.round((score / 30) * 100) }));
+        .map(([code, score]) => ({ code, score, pct: Math.round((score / MAX_PER_CODE) * 100) }));
 
       const top3 = ranked.slice(0, 3).map(r => r.code);
       const bottom = ranked[ranked.length - 1];
-
       const tagline = getTagline(top3);
 
-      let html = '';
+      const rankLabels = ['LEAD', 'SUPPORT', 'UNDER'];
+      const rankSlots = ['lead', 'support', 'under'];
 
-      // === HERO ===
-      html += `
+      function renderLayers(sectionKey) {
+        return top3.map((code, idx) => {
+          const slot = rankSlots[idx];
+          const body = LAYERS[code][sectionKey][slot];
+          return `
+            <div class="layer rank-${idx + 1} ${code.toLowerCase()}">
+              <div class="layer-mark">
+                <div class="code-letter">${code}</div>
+                <div class="rank-num">#${idx + 1}</div>
+              </div>
+              <div class="body">${body}</div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const html = `
         <div class="result-card" id="resultCard">
+
           <div class="result-hero">
             <div class="result-kicker">YOUR HOLLAND CODES · TOP 3</div>
             <h1 class="result-title">${top3.join(' · ')} 型</h1>
             <div class="top3-codes">
               ${top3.map((c, idx) => `
                 <div class="badge rank-${idx + 1}">
+                  <div class="rank">#${idx + 1}</div>
                   <div class="l">${c}</div>
-                  <div class="r">#${idx + 1}</div>
+                  <div class="nm">${CODES[c].name}</div>
                 </div>
               `).join('')}
             </div>
@@ -1184,75 +1414,53 @@
               <div class="score-row ${r.code.toLowerCase()}">
                 <span class="code-l">${r.code}</span>
                 <div class="bar-track"><div class="bar-fill" style="width:${r.pct}%"></div></div>
-                <span class="pct">${r.score} / 30</span>
+                <span class="pct">${r.score} / ${MAX_PER_CODE}</span>
               </div>
             `).join('')}
           </div>
 
-          <!-- 基礎特質 -->
           <div class="rsection">
             <div class="rsection-title">
               <div class="icon">①</div>
-              <h2>基礎特質性格</h2>
+              <h2>基礎特質性格 · 縱覽</h2>
             </div>
-            <p>你的人格結構由 <strong>${top3.join(' + ')}</strong> 三股力量組成。從強到弱：</p>
-            <div class="trait-grid">
-              ${top3.map(c => `
-                <div class="trait-item ${c.toLowerCase()}">
-                  <div class="tag">${c}</div>
-                  <div class="body"><b>${CODES[c].name}：</b>${CODE_DESC[c].trait}</div>
-                </div>
-              `).join('')}
-            </div>
+            <p class="rsection-sub">主軸由 <b>#${1} ${top3[0]}</b> 帶領、<b>#${2} ${top3[1]}</b> 支援、<b>#${3} ${top3[2]}</b> 墊底。</p>
+            ${renderLayers('trait')}
           </div>
 
-          <!-- 職業熱情傾向 -->
           <div class="rsection">
             <div class="rsection-title">
               <div class="icon">②</div>
-              <h2>職業熱情傾向</h2>
+              <h2>職業熱情傾向 · 縱覽</h2>
             </div>
-            <p>你最容易在這些方向感到「對」：</p>
-            <div class="trait-grid">
-              ${top3.map(c => `
-                <div class="trait-item ${c.toLowerCase()}">
-                  <div class="tag">${c}</div>
-                  <div class="body">${CODE_DESC[c].career}</div>
-                </div>
-              `).join('')}
-            </div>
-            <p style="margin-top:18px"><strong>適合的職業方向（你 Top 3 內常見）：</strong></p>
-            <div class="jobs-list">
-              ${aggregateJobs(top3).map(j => `<span>${j}</span>`).join('')}
+            <p class="rsection-sub">三層興趣由強到弱，從哪邊切入都會有感。</p>
+            ${renderLayers('career')}
+
+            <div class="jobs-box">
+              <h4>適合的職業方向（你 Top 3 內常見）</h4>
+              <div class="jobs-list">
+                ${aggregateJobs(top3).map(j => `<span>${j}</span>`).join('')}
+              </div>
             </div>
           </div>
 
-          <!-- 溝通風格 -->
           <div class="rsection">
             <div class="rsection-title">
               <div class="icon">③</div>
-              <h2>溝通風格</h2>
+              <h2>溝通風格 · 縱覽</h2>
             </div>
-            <p>你跟人互動時，會這樣表達自己：</p>
-            <div class="trait-grid">
-              ${top3.map(c => `
-                <div class="trait-item ${c.toLowerCase()}">
-                  <div class="tag">${c}</div>
-                  <div class="body">${CODE_DESC[c].comm}</div>
-                </div>
-              `).join('')}
-            </div>
+            <p class="rsection-sub">你跟人互動時，呈現的層次。</p>
+            ${renderLayers('comm')}
           </div>
 
-          <!-- 盲點 -->
           <div class="rsection">
             <div class="rsection-title">
               <div class="icon">④</div>
-              <h2>你的盲點 / 補位方向</h2>
+              <h2>盲點 / 補位</h2>
             </div>
-            <p>你最弱的一碼是 <strong>${bottom.code} · ${CODES[bottom.code].name}</strong>（${bottom.score} / 30 分）。</p>
+            <p class="rsection-sub">你最弱的一碼是 <b>${bottom.code} · ${CODES[bottom.code].name}</b>（${bottom.score} / ${MAX_PER_CODE} 分）。</p>
             <div class="blindspot">
-              <strong>提醒：</strong>當你 Top 3 太強時，可能會在這些情境吃虧——
+              <strong>提醒：</strong>當 Top 3 太強時，可能會在這些情境吃虧——
               ${getBlindspotHint(bottom.code)}
               <br><br>
               <strong>補位建議：</strong>不用變成那種人，但<b>身邊找一個 ${bottom.code} 型強的朋友 / 同事</b>，重要決定先跟他聊一下。
@@ -1270,11 +1478,8 @@
     }
 
     function aggregateJobs(top3) {
-      // 取每碼前 4 個，去重，最多 12 個
       const set = new Set();
-      top3.forEach(c => {
-        CODE_DESC[c].jobs.slice(0, 4).forEach(j => set.add(j));
-      });
+      top3.forEach(c => JOB_LISTS[c].slice(0, 4).forEach(j => set.add(j)));
       return Array.from(set).slice(0, 12);
     }
 
@@ -1326,18 +1531,12 @@
     }
 
     function getCurrentTop3() {
-      const scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
-      QUESTIONS.forEach((q, i) => {
-        if (STATE.answers[i] !== null) scores[q.code] += STATE.answers[i];
-      });
+      const scores = computeScores();
       return Object.entries(scores).sort((a, b) => b[1] - a[1]).slice(0, 3).map(e => e[0]).join('');
     }
 
     function copyResult() {
-      const scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
-      QUESTIONS.forEach((q, i) => {
-        if (STATE.answers[i] !== null) scores[q.code] += STATE.answers[i];
-      });
+      const scores = computeScores();
       const ranked = Object.entries(scores).sort((a, b) => b[1] - a[1]);
       const top3 = ranked.slice(0, 3).map(r => r[0]);
       const tagline = getTagline(top3);
@@ -1348,13 +1547,17 @@
         `${tagline}`,
         ``,
         `六型分數：`,
-        ...ranked.map(([c, s]) => `${c} · ${CODES[c].name}：${s} / 30`),
+        ...ranked.map(([c, s]) => `${c} · ${CODES[c].name}：${s} / ${MAX_PER_CODE}`),
         ``,
         `→ arth.tw/holland`,
       ].join('\n');
-      navigator.clipboard.writeText(txt).then(() => {
-        showToast('已複製，可貼到 LINE / IG / 工作坊學習單');
-      });
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(txt).then(() => {
+          showToast('已複製，可貼到 LINE / IG / 工作坊學習單');
+        });
+      } else {
+        showToast('此瀏覽器無法自動複製，請手動截圖');
+      }
     }
 
     function restart() {
@@ -1369,8 +1572,7 @@
     // ============================================================
     // INIT
     // ============================================================
-    // Sanity check: 60 questions
-    console.assert(QUESTIONS.length === 60, 'Should have 60 questions');
+    console.assert(QUESTIONS.length === 36, 'Should have 36 questions');
   </script>
 </body>
 
