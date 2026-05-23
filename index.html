@@ -785,6 +785,205 @@
       border-left: 2.5px solid var(--accent2);
     }
 
+    /* --- Energy map (charge / drain) --- */
+    .energy-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .energy-col {
+      border-radius: 12px;
+      padding: 16px 18px;
+      border: 1.5px solid var(--border);
+    }
+
+    .energy-col.charge {
+      background: rgba(26, 122, 110, .05);
+      border-left: 3px solid var(--teal);
+    }
+
+    .energy-col.drain {
+      background: rgba(192, 57, 43, .04);
+      border-left: 3px solid var(--accent);
+    }
+
+    .energy-col .e-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .energy-col.charge .e-title { color: var(--teal); }
+    .energy-col.drain .e-title { color: var(--accent); }
+
+    .energy-col .e-title .ic {
+      font-size: 18px;
+    }
+
+    .energy-col .e-sub {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    .energy-col .e-layer {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 10px;
+      padding: 9px 0;
+      align-items: start;
+    }
+
+    .energy-col .e-layer + .e-layer {
+      border-top: 1px dashed var(--border);
+    }
+
+    .energy-col .e-letter {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1;
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg2);
+    }
+
+    .energy-col .e-letter.r { color: var(--r); background: rgba(230, 126, 34, .12); }
+    .energy-col .e-letter.i { color: var(--i); background: rgba(30, 77, 140, .1); }
+    .energy-col .e-letter.a { color: var(--a); background: rgba(107, 62, 122, .1); }
+    .energy-col .e-letter.s { color: var(--s); background: rgba(26, 122, 110, .1); }
+    .energy-col .e-letter.e { color: var(--e); background: rgba(192, 57, 43, .08); }
+    .energy-col .e-letter.c { color: var(--c); background: rgba(122, 110, 101, .12); }
+
+    .energy-col .e-rank {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      color: var(--muted);
+      letter-spacing: .8px;
+      margin-top: 2px;
+      text-align: center;
+    }
+
+    .energy-col .e-layer .e-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink2);
+    }
+
+    .energy-col .e-layer.rank-1 .e-body {
+      font-size: 14.5px;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .energy-col .e-layer.rank-3 .e-body {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .energy-col .e-body b {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    /* --- Scenario cards --- */
+    .scenario-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .scenario-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent2);
+      border-radius: 10px;
+      padding: 14px 16px 12px;
+    }
+
+    .scenario-card .sc-head {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+
+    .scenario-card h4 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .scenario-card .sc-sub {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .scenario-card .sc-main {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      align-items: start;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--ink);
+      margin-top: 4px;
+    }
+
+    .scenario-card .sc-mod {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      align-items: start;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .scenario-card .sc-mini {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 16px;
+      line-height: 1;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg2);
+      margin-top: 1px;
+    }
+
+    .scenario-card .sc-main .sc-mini { width: 28px; height: 28px; font-size: 18px; }
+
+    .scenario-card .sc-mini.r { color: var(--r); background: rgba(230, 126, 34, .12); }
+    .scenario-card .sc-mini.i { color: var(--i); background: rgba(30, 77, 140, .1); }
+    .scenario-card .sc-mini.a { color: var(--a); background: rgba(107, 62, 122, .1); }
+    .scenario-card .sc-mini.s { color: var(--s); background: rgba(26, 122, 110, .1); }
+    .scenario-card .sc-mini.e { color: var(--e); background: rgba(192, 57, 43, .08); }
+    .scenario-card .sc-mini.c { color: var(--c); background: rgba(122, 110, 101, .12); }
+
     /* --- Blindspot --- */
     .blindspot {
       background: rgba(192, 57, 43, .05);
@@ -874,6 +1073,7 @@
       .layer { grid-template-columns: 48px 1fr; gap: 12px; padding: 12px 0; }
       .layer .code-letter { width: 40px; height: 40px; font-size: 26px; }
       .layer.rank-1 .code-letter { width: 44px; height: 44px; font-size: 30px; }
+      .energy-split { grid-template-columns: 1fr; gap: 12px; }
     }
 
     /* Mobile */
@@ -909,6 +1109,16 @@
       .jobs-list span { font-size: 12.5px; padding: 7px 10px; }
       .result-actions .btn { min-width: 0; flex: 1 1 calc(50% - 5px); }
       .rsection-title h2 { font-size: 18px; }
+      .energy-col { padding: 14px 14px; }
+      .energy-col .e-title { font-size: 14px; }
+      .energy-col .e-layer { grid-template-columns: 28px 1fr; gap: 8px; }
+      .energy-col .e-letter { width: 24px; height: 24px; font-size: 15px; }
+      .energy-col .e-layer .e-body { font-size: 13px; }
+      .energy-col .e-layer.rank-1 .e-body { font-size: 13.5px; }
+      .scenario-card { padding: 12px 14px 10px; }
+      .scenario-card h4 { font-size: 15px; }
+      .scenario-card .sc-main { font-size: 13.5px; }
+      .scenario-card .sc-mod { font-size: 12.5px; }
     }
 
     @media print {
@@ -1115,6 +1325,16 @@
           support: '同時也偏好<b>少廢話</b>的溝通——重點先講，不愛冗長。',
           under: '表達上有一點<b>務實</b>的味道——你不太說空話。',
         },
+        charge: {
+          lead: '<b>動手做有實體成果的事</b>、用工具解決問題、能流汗、看到自己做出來的東西。',
+          support: '同時也喜歡：<b>能接觸實體工作</b>，不用整天坐著打字。',
+          under: '偶爾需要：<b>動手機會</b>，當作從腦袋裡跳出來的出口。',
+        },
+        drain: {
+          lead: '<b>純坐辦公室不動</b>、整天開會、只用嘴不用手、看不到實體產出。',
+          support: '也會被消耗：<b>太多紙上談兵</b>、做不出可見成果。',
+          under: '偶爾會卡：<b>完全沒實作機會</b>的時候。',
+        },
       },
       I: {
         trait: {
@@ -1131,6 +1351,16 @@
           lead: '溝通上<b>精確、邏輯導向、會先問前提</b>——別人下結論時，你會先問清楚定義。',
           support: '同時也偏好<b>有理有據</b>的溝通——你不滿足於模糊的答覆。',
           under: '表達上有一點<b>思考型</b>的味道——你會停一下再說。',
+        },
+        charge: {
+          lead: '<b>獨自深入鑽研</b>、被允許追根究底、不被催、能整理出邏輯與模式。',
+          support: '同時也喜歡：<b>有思考空間</b>，做事前能搞清楚原因。',
+          under: '偶爾需要：<b>能慢下來想</b>的時刻，不被一直催進度。',
+        },
+        drain: {
+          lead: '<b>被迫立刻決定</b>、只能靠直覺、被打斷無法深入、表面討論。',
+          support: '也會被消耗：<b>沒時間想清楚</b>、被催進度、要硬掰答案。',
+          under: '偶爾會卡：<b>需要立刻反應</b>但你還沒想透時。',
         },
       },
       A: {
@@ -1149,6 +1379,16 @@
           support: '同時也偏好<b>有溫度的表達</b>——你不會講得太枯燥。',
           under: '表達上有一點<b>感性</b>的味道——關鍵時刻你能說到人心裡。',
         },
+        charge: {
+          lead: '<b>自由發揮空間</b>、能放入個人風格、原創被看見、跳脫框架。',
+          support: '同時也喜歡：<b>有發揮空間</b>，不被綁死、能加入自己的味道。',
+          under: '偶爾需要：<b>能任性一下</b>，不需要完全照表操課。',
+        },
+        drain: {
+          lead: '<b>嚴格 SOP</b>、複製貼上、抹掉個性、樣板化任務。',
+          support: '也會被消耗：<b>太多規矩</b>、不能加入自己的風格。',
+          under: '偶爾會卡：<b>被要求完全照樣板</b>、不能變動。',
+        },
       },
       S: {
         trait: {
@@ -1165,6 +1405,16 @@
           lead: '溝通上<b>溫暖、會傾聽、先處理情緒再處理事</b>——別人在你面前願意說真話。',
           support: '同時也偏好<b>照顧對方</b>的表達——不會只講自己的立場。',
           under: '表達上有一點<b>共感</b>的味道——你能讀懂對方沒說的部分。',
+        },
+        charge: {
+          lead: '<b>被需要</b>、看到對人有實際影響、跟人有真誠連結、群體有溫度。',
+          support: '同時也喜歡：<b>跟人接觸</b>、能聽到別人的故事、感受被需要。',
+          under: '偶爾需要：<b>跟人有點交集</b>，不要完全孤立工作。',
+        },
+        drain: {
+          lead: '<b>環境冷漠</b>、沒人互動、做的事看不見對誰有用、長期孤立。',
+          support: '也會被消耗：<b>太冷的氛圍</b>、跟人沒連結。',
+          under: '偶爾會卡：<b>長期一個人工作</b>沒回饋的時候。',
         },
       },
       E: {
@@ -1183,6 +1433,16 @@
           support: '同時也偏好<b>推進式</b>的表達——對話完通常會有下一步動作。',
           under: '表達上有一點<b>主動</b>的味道——你不會被冷場壓住。',
         },
+        charge: {
+          lead: '<b>主導局面</b>、看到自己決定的事變成結果、能說服 / 帶動別人、有可衝刺的目標。',
+          support: '同時也喜歡：<b>有主導空間</b>、能推事情、看到成績回饋。',
+          under: '偶爾需要：<b>能做決定的瞬間</b>，不要全程當執行者。',
+        },
+        drain: {
+          lead: '<b>完全聽命</b>、沒決策空間、看不到結果、推不動的事。',
+          support: '也會被消耗：<b>完全被動執行</b>、沒主導感。',
+          under: '偶爾會卡：<b>事情明顯停滯</b>但沒人推時。',
+        },
       },
       C: {
         trait: {
@@ -1200,8 +1460,76 @@
           support: '同時也偏好<b>精確</b>的表達——你不愛模糊的「大概」「可能」。',
           under: '表達上有一點<b>周到</b>的味道——重要細節你會主動補上。',
         },
+        charge: {
+          lead: '<b>流程清晰</b>、有計畫照做、能把亂的整理好、有 SOP 可依循。',
+          support: '同時也喜歡：<b>有條理的環境</b>，知道下一步是什麼。',
+          under: '偶爾需要：<b>能整理一下</b>，不要長期處在混亂。',
+        },
+        drain: {
+          lead: '<b>混亂</b>、隨機變動、沒框架、頻繁救火。',
+          support: '也會被消耗：<b>太多臨時變動</b>、沒計畫感。',
+          under: '偶爾會卡：<b>東西散亂找不到</b>、沒人整理時。',
+        },
       },
     };
+
+    // ============================================================
+    // SCENARIOS · 4 個常見情境，每碼有「主軸 (top1)」與「微調 (top2)」兩種
+    // ============================================================
+    const SCENARIOS = [
+      {
+        key: 'group',
+        title: '在團體中',
+        sub: '進到 4 人以上的場合（會議 / 朋友聚會 / 工作小組）時，你會這樣呈現自己。',
+        per: {
+          R: { main: '偏安靜、不愛多話，但有事要做時會自然站出來、捲起袖子做。', mod: '該動手時你會接手。' },
+          I: { main: '觀察派——發言前先消化全場資訊，言之有物才開口。', mod: '你會多想一層才回應。' },
+          A: { main: '經常拋出不一樣的角度，常被當「特別的那個」，不愛從眾。', mod: '偶爾會拋出不同的觀點。' },
+          S: { main: '自然照顧氣氛，會注意每個人有沒有被晾著、誰需要被接住。', mod: '會注意誰被冷落。' },
+          E: { main: '容易自然變成主導者 / 拍板的人，能把討論帶到結論。', mod: '會想把事情推進往前。' },
+          C: { main: '默默把流程整理好，提醒大家別漏掉細節、別偏離主題。', mod: '會默默維持秩序。' },
+        },
+      },
+      {
+        key: 'stress',
+        title: '壓力下',
+        sub: '當事情排山倒海、deadline 逼近、出包要救火時，你的本能反應。',
+        per: {
+          R: { main: '用做事消化壓力——動起來就會好，越坐越焦慮。', mod: '會想動起來消化情緒。' },
+          I: { main: '退到自己的角落想清楚，不愛被打擾，需要消化時間。', mod: '想退一步想清楚。' },
+          A: { main: '兩極反應——創意可能爆發救援，也可能完全當機。', mod: '創意可能跳出來救援。' },
+          S: { main: '主動找人聊聊，需要陪伴感才能消化，孤立會更糟。', mod: '會想找人聊一下。' },
+          E: { main: '直接做決定推進，硬扛壓力，越急越主動。', mod: '會想趕快做決定。' },
+          C: { main: '列清單、拆細任務、重建秩序感，混亂讓你更慌。', mod: '會想列清單拆任務。' },
+        },
+      },
+      {
+        key: 'learn',
+        title: '學習新東西',
+        sub: '進到新領域、學新技能、要快速上手陌生的事時，你的吸收節奏。',
+        per: {
+          R: { main: '邊做邊學——看別人示範一次就上手，光看書會分心。', mod: '想邊做邊學。' },
+          I: { main: '先把資料讀透才動手，追根究底，不愛囫圇吞棗。', mod: '想先搞懂原理。' },
+          A: { main: '跳著學——感興趣的優先吃，不愛照課程順序走。', mod: '想用自己的方式吸收。' },
+          S: { main: '喜歡跟人一起學——討論派，被陪著進步比較有動力。', mod: '想跟人一起學。' },
+          E: { main: '直接做做看，邊做邊問，最快上手就好。', mod: '想直接上手試。' },
+          C: { main: '照教材順序、做筆記、不跳章節，求紮實。', mod: '想照順序學。' },
+        },
+      },
+      {
+        key: 'conflict',
+        title: '面對衝突 / 意見不同',
+        sub: '當你跟別人想法不同、被質疑、要溝通難搞的人時，你的應對。',
+        per: {
+          R: { main: '不愛吵架——用行動 / 結果解決，避免長時間口水戰。', mod: '不愛拖太久。' },
+          I: { main: '拆解雙方邏輯、找事實依據，希望論點站得住腳。', mod: '想搞清楚誰有道理。' },
+          A: { main: '用幽默或比喻緩和氣氛，找新的角度繞過衝突點。', mod: '想用新角度緩和。' },
+          S: { main: '先處理對方情緒，找雙方都能接受的點。', mod: '想顧到對方感受。' },
+          E: { main: '直接攤牌，不怕表達立場，能在現場拍板。', mod: '不怕直接講開。' },
+          C: { main: '拉出規則 / 流程當判斷基準，避免主觀對峙。', mod: '想拉出制度當判準。' },
+        },
+      },
+    ];
 
     const JOB_LISTS = {
       R: ['廚師', '機車技師', '水電師傅', '警察', '消防員', '志願役', '健身教練', '美髮師', '潛水教練', '海巡'],
@@ -1456,6 +1784,68 @@
           <div class="rsection">
             <div class="rsection-title">
               <div class="icon">④</div>
+              <h2>能量地圖 · 充電 vs 耗電</h2>
+            </div>
+            <p class="rsection-sub">同樣的環境，有人覺得活著、有人覺得快窒息。你的 Top 3 告訴你哪邊適合久待、哪邊待久了會倦怠。</p>
+            <div class="energy-split">
+              <div class="energy-col charge">
+                <div class="e-title"><span class="ic">⚡</span>充電模式 · 待越久越有電</div>
+                <div class="e-sub">想久待、想多做、不會累的環境。</div>
+                ${top3.map((code, idx) => `
+                  <div class="e-layer rank-${idx + 1}">
+                    <div>
+                      <div class="e-letter ${code.toLowerCase()}">${code}</div>
+                      <div class="e-rank">#${idx + 1}</div>
+                    </div>
+                    <div class="e-body">${LAYERS[code].charge[rankSlots[idx]]}</div>
+                  </div>
+                `).join('')}
+              </div>
+              <div class="energy-col drain">
+                <div class="e-title"><span class="ic">🔋</span>耗電模式 · 待越久越倦怠</div>
+                <div class="e-sub">短期忍得了、長期會把你掏空的環境。</div>
+                ${top3.map((code, idx) => `
+                  <div class="e-layer rank-${idx + 1}">
+                    <div>
+                      <div class="e-letter ${code.toLowerCase()}">${code}</div>
+                      <div class="e-rank">#${idx + 1}</div>
+                    </div>
+                    <div class="e-body">${LAYERS[code].drain[rankSlots[idx]]}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+
+          <div class="rsection">
+            <div class="rsection-title">
+              <div class="icon">⑤</div>
+              <h2>場景速覽 · 四種情境下的你</h2>
+            </div>
+            <p class="rsection-sub">主要呈現是 <b>#1 ${top3[0]}</b> 的模式，搭配 <b>#2 ${top3[1]}</b> 的微調。</p>
+            <div class="scenario-list">
+              ${SCENARIOS.map(sc => `
+                <div class="scenario-card">
+                  <div class="sc-head">
+                    <h4>${sc.title}</h4>
+                  </div>
+                  <div class="sc-sub">${sc.sub}</div>
+                  <div class="sc-main">
+                    <div class="sc-mini ${top3[0].toLowerCase()}">${top3[0]}</div>
+                    <div><b>#1 ${top3[0]}：</b>${sc.per[top3[0]].main}</div>
+                  </div>
+                  <div class="sc-mod">
+                    <div class="sc-mini ${top3[1].toLowerCase()}">${top3[1]}</div>
+                    <div>搭配 <b>#2 ${top3[1]}</b>——${sc.per[top3[1]].mod}</div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <div class="rsection">
+            <div class="rsection-title">
+              <div class="icon">⑥</div>
               <h2>盲點 / 補位</h2>
             </div>
             <p class="rsection-sub">你最弱的一碼是 <b>${bottom.code} · ${CODES[bottom.code].name}</b>（${bottom.score} / ${MAX_PER_CODE} 分）。</p>
