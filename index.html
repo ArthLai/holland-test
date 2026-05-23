@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="description"
+    content="Holland 職涯六型測評 · 60 題 · 找出你的 Top 3 RIASEC 組合與適合的職業方向" />
+  <title>Holland 職涯六型測評 · 找出你的 Top 3 組合</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
+  <style>
+    :root {
+      --bg: #faf6f0;
+      --bg2: #f5ede0;
+      --ink: #1a1410;
+      --ink2: #2d2520;
+      --muted: #7a6e65;
+      --border: #d4c9bc;
+      --line: #b0a89d;
+      --accent: #c0392b;
+      --accent2: #e67e22;
+      --gold: #d4a017;
+      --teal: #1a7a6e;
+      --blue: #1e4d8c;
+      --purple: #6b3e7a;
+      --card: #ffffff;
+      --r: #e67e22;
+      --i: #1e4d8c;
+      --a: #6b3e7a;
+      --s: #1a7a6e;
+      --e: #c0392b;
+      --c: #7a6e65;
+      --font-display: 'Noto Serif TC', serif;
+      --font-body: 'Noto Sans TC', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+      background-size: 200px;
+      opacity: .8;
+    }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* === Intro Screen === */
+    .intro h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(36px, 6vw, 56px);
+      line-height: 1.12;
+      letter-spacing: -.01em;
+      margin-bottom: 16px;
+    }
+
+    .intro h1 em {
+      font-style: normal;
+      color: var(--accent2);
+    }
+
+    .intro .lead {
+      font-size: 17px;
+      color: var(--ink2);
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 580px;
+    }
+
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--accent2);
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 28px 0 32px;
+      border-top: 1.5px solid var(--ink);
+      padding-top: 18px;
+    }
+
+    .meta-grid .lab {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .meta-grid .val {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--ink);
+    }
+
+    .codes-preview {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      margin-bottom: 28px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, .04);
+    }
+
+    .codes-preview h3 {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .codes-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+
+    .code-chip {
+      text-align: center;
+      padding: 10px 4px;
+      border-radius: 8px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+    }
+
+    .code-chip .l {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--ink);
+    }
+
+    .code-chip .n {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .code-chip.r .l { color: var(--r); }
+    .code-chip.i .l { color: var(--i); }
+    .code-chip.a .l { color: var(--a); }
+    .code-chip.s .l { color: var(--s); }
+    .code-chip.e .l { color: var(--e); }
+    .code-chip.c .l { color: var(--c); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 32px;
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .15);
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .2);
+    }
+
+    .btn.accent {
+      background: var(--accent2);
+    }
+
+    .btn.outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+      box-shadow: none;
+    }
+
+    .btn.outline:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .btn.small {
+      padding: 10px 18px;
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .small-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* === Question Screen === */
+    .qscreen { display: none; }
+    .qscreen.active { display: block; }
+
+    .progress-bar {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      padding: 16px 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--border);
+      margin: -32px -20px 24px;
+      padding: 16px 20px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .progress-info strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .progress-track {
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      width: 0%;
+      transition: width .3s ease;
+    }
+
+    .qcard {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .05);
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .qnum {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .qtext {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 4vw, 28px);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .qopts {
+      display: grid;
+      gap: 10px;
+    }
+
+    .qopt {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all .15s ease;
+      text-align: left;
+      width: 100%;
+      font-family: var(--font-body);
+      color: var(--ink);
+    }
+
+    .qopt:hover {
+      border-color: var(--accent2);
+      background: rgba(230, 126, 34, .06);
+      transform: translateX(4px);
+    }
+
+    .qopt.selected {
+      border-color: var(--accent2);
+      background: rgba(230, 126, 34, .1);
+      font-weight: 600;
+    }
+
+    .qopt .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1.5px solid var(--line);
+      flex-shrink: 0;
+      position: relative;
+      transition: all .15s ease;
+    }
+
+    .qopt.selected .dot {
+      border-color: var(--accent2);
+      background: var(--accent2);
+    }
+
+    .qopt.selected .dot::after {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    .qnav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .qnav .btn.outline {
+      flex: 0 0 auto;
+    }
+
+    .qnav-spacer { flex: 1; }
+
+    /* === Result Screen === */
+    .rscreen { display: none; }
+    .rscreen.active { display: block; }
+
+    .result-card {
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .08);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .result-hero {
+      background: linear-gradient(135deg, #2d2520 0%, #1a1410 100%);
+      color: var(--bg);
+      padding: 36px 28px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.06'/%3E%3C/svg%3E");
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    .result-hero > * { position: relative; z-index: 1; }
+
+    .result-kicker {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--accent2);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .result-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
+
+    .top3-codes {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .top3-codes .badge {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255, 255, 255, .15);
+    }
+
+    .top3-codes .badge .l {
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .top3-codes .badge .r {
+      font-size: 10px;
+      font-family: var(--font-mono);
+      color: rgba(250, 246, 240, .6);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    .top3-codes .badge.rank-1 { background: rgba(230, 126, 34, .25); border-color: var(--accent2); }
+    .top3-codes .badge.rank-1 .l { color: var(--accent2); }
+    .top3-codes .badge.rank-2 { background: rgba(212, 160, 23, .2); border-color: var(--gold); }
+    .top3-codes .badge.rank-2 .l { color: var(--gold); }
+    .top3-codes .badge.rank-3 { background: rgba(255, 255, 255, .1); }
+    .top3-codes .badge.rank-3 .l { color: rgba(255, 255, 255, .9); }
+
+    .result-tagline {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(250, 246, 240, .92);
+      line-height: 1.5;
+    }
+
+    /* Score bars */
+    .scores {
+      padding: 28px 28px 20px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .scores h3 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .score-row {
+      display: grid;
+      grid-template-columns: 36px 1fr 50px;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .score-row .code-l {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .score-row.r .code-l { color: var(--r); }
+    .score-row.i .code-l { color: var(--i); }
+    .score-row.a .code-l { color: var(--a); }
+    .score-row.s .code-l { color: var(--s); }
+    .score-row.e .code-l { color: var(--e); }
+    .score-row.c .code-l { color: var(--c); }
+
+    .bar-track {
+      height: 10px;
+      background: var(--border);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 5px;
+      transition: width .8s ease;
+    }
+
+    .r .bar-fill { background: var(--r); }
+    .i .bar-fill { background: var(--i); }
+    .a .bar-fill { background: var(--a); }
+    .s .bar-fill { background: var(--s); }
+    .e .bar-fill { background: var(--e); }
+    .c .bar-fill { background: var(--c); }
+
+    .score-row .pct {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--ink);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    /* Sections */
+    .rsection {
+      padding: 26px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .rsection:last-child { border-bottom: none; }
+
+    .rsection-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .rsection-title .icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent2);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 16px;
+    }
+
+    .rsection-title h2 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .rsection p {
+      color: var(--ink2);
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .rsection p strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .trait-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .trait-item {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px 16px;
+      background: var(--bg);
+      border-radius: 10px;
+      border-left: 3px solid var(--accent2);
+    }
+
+    .trait-item.r { border-left-color: var(--r); }
+    .trait-item.i { border-left-color: var(--i); }
+    .trait-item.a { border-left-color: var(--a); }
+    .trait-item.s { border-left-color: var(--s); }
+    .trait-item.e { border-left-color: var(--e); }
+    .trait-item.c { border-left-color: var(--c); }
+
+    .trait-item .tag {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 22px;
+      line-height: 1;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg2);
+    }
+
+    .trait-item.r .tag { color: var(--r); background: rgba(230, 126, 34, .12); }
+    .trait-item.i .tag { color: var(--i); background: rgba(30, 77, 140, .12); }
+    .trait-item.a .tag { color: var(--a); background: rgba(107, 62, 122, .12); }
+    .trait-item.s .tag { color: var(--s); background: rgba(26, 122, 110, .12); }
+    .trait-item.e .tag { color: var(--e); background: rgba(192, 57, 43, .1); }
+    .trait-item.c .tag { color: var(--c); background: rgba(122, 110, 101, .12); }
+
+    .trait-item .body {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--ink2);
+    }
+
+    .trait-item .body b {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .jobs-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .jobs-list span {
+      font-size: 14px;
+      padding: 8px 12px;
+      background: var(--bg2);
+      border-radius: 6px;
+      color: var(--ink2);
+      border-left: 2px solid var(--accent2);
+    }
+
+    .blindspot {
+      background: rgba(192, 57, 43, .05);
+      padding: 14px 18px;
+      border-radius: 10px;
+      border-left: 3px solid var(--accent);
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--ink2);
+    }
+
+    .blindspot strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .footer-meta {
+      text-align: center;
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      background: var(--bg2);
+    }
+
+    .footer-meta a {
+      color: var(--muted);
+      text-decoration: underline;
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 28px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink);
+      color: var(--bg);
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 14px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .2);
+      opacity: 0;
+      pointer-events: none;
+      transition: all .25s ease;
+      z-index: 100;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .wrap { padding: 20px 16px 60px; }
+      .meta-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .meta-grid .val { font-size: 16px; }
+      .qcard { padding: 24px 20px; min-height: 240px; }
+      .rsection { padding: 22px 20px; }
+      .scores { padding: 22px 20px 16px; }
+      .result-hero { padding: 28px 22px 26px; }
+      .top3-codes .badge { width: 52px; height: 52px; }
+      .top3-codes .badge .l { font-size: 24px; }
+      .jobs-list { grid-template-columns: 1fr; }
+      .trait-item { grid-template-columns: 30px 1fr; gap: 10px; padding: 12px 14px; }
+      .trait-item .tag { width: 30px; height: 30px; font-size: 18px; }
+    }
+
+    @media print {
+      body { background: #fff; }
+      .progress-bar, .qnav, .result-actions, .toast { display: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- ============================================================ -->
+    <!-- INTRO -->
+    <!-- ============================================================ -->
+    <section id="intro" class="intro">
+      <div class="kicker">HOLLAND CODES · RIASEC · 職涯六型</div>
+      <h1>找出你的 <em>Top 3</em><br>職涯人格組合</h1>
+      <p class="lead">
+        Holland 六型理論把每個人對工作的偏好拆成 6 種傾向。
+        多數人不是「單一型」，而是 <strong>3 個碼的組合</strong>——
+        這個組合，比任何單一標籤都更接近真實的你。
+      </p>
+
+      <div class="meta-grid">
+        <div>
+          <div class="lab">題數</div>
+          <div class="val">60 題</div>
+        </div>
+        <div>
+          <div class="lab">時間</div>
+          <div class="val">~ 8 分鐘</div>
+        </div>
+        <div>
+          <div class="lab">結果</div>
+          <div class="val">Top 3 組合</div>
+        </div>
+      </div>
+
+      <div class="codes-preview">
+        <h3>RIASEC · 六型一覽</h3>
+        <div class="codes-row">
+          <div class="code-chip r"><div class="l">R</div><div class="n">實作</div></div>
+          <div class="code-chip i"><div class="l">I</div><div class="n">研究</div></div>
+          <div class="code-chip a"><div class="l">A</div><div class="n">藝術</div></div>
+          <div class="code-chip s"><div class="l">S</div><div class="n">社會</div></div>
+          <div class="code-chip e"><div class="l">E</div><div class="n">企業</div></div>
+          <div class="code-chip c"><div class="l">C</div><div class="n">事務</div></div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn accent" onclick="startTest()">
+          開始測評 →
+        </button>
+      </div>
+      <div class="small-note">
+        ※ 沒有對錯。憑直覺作答最準。結果可以下載成圖片分享 / 留存。
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- QUESTION SCREEN -->
+    <!-- ============================================================ -->
+    <section id="qscreen" class="qscreen">
+      <div class="progress-bar">
+        <div class="progress-info">
+          <span>進度 · <strong id="qcur">1</strong> / 60</span>
+          <span id="qpct">2%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="qfill"></div>
+        </div>
+      </div>
+
+      <div class="qcard">
+        <div class="qnum" id="qnum">Q01 / 60</div>
+        <div class="qtext" id="qtext"></div>
+        <div class="qopts" id="qopts"></div>
+      </div>
+
+      <div class="qnav">
+        <button class="btn outline small" id="qback" onclick="prevQuestion()">← 上一題</button>
+        <div class="qnav-spacer"></div>
+        <button class="btn small" id="qnext" onclick="nextQuestion()" disabled>下一題 →</button>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- RESULT SCREEN -->
+    <!-- ============================================================ -->
+    <section id="rscreen" class="rscreen">
+      <div id="resultContent"></div>
+
+      <div class="result-actions">
+        <button class="btn accent" onclick="downloadPNG()">📷 下載結果圖</button>
+        <button class="btn outline" onclick="copyResult()">📋 複製文字</button>
+        <button class="btn outline" onclick="restart()">🔄 重做一次</button>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ============================================================
+    // QUESTIONS (60: 10 per code)
+    // ============================================================
+    const QUESTIONS = [
+      // === R · 實作型 ===
+      { code: 'R', text: '看到壞掉的東西，我會想拆開來修。' },
+      { code: 'R', text: '我喜歡可以動手做的工作，勝過坐在電腦前。' },
+      { code: 'R', text: '比起讀書，我更想學一門技術（修車 / 烹飪 / 木工 / 美髮）。' },
+      { code: 'R', text: '室外運動、勞動讓我很有精神。' },
+      { code: 'R', text: '我寧可花一天裝好家具，也不要花一天寫報告。' },
+      { code: 'R', text: '看到別人在做工，我會多看兩眼，好奇怎麼做的。' },
+      { code: 'R', text: '我能忍受重複動作、體力消耗的工作。' },
+      { code: 'R', text: '比起用嘴溝通，我更習慣直接做給對方看。' },
+      { code: 'R', text: '工具、器材、機器很吸引我。' },
+      { code: 'R', text: '我喜歡能流汗的工作。' },
+
+      // === I · 研究型 ===
+      { code: 'I', text: '我對「為什麼」這種問題很有興趣。' },
+      { code: 'I', text: '看完一部劇我會想搞清楚劇情邏輯。' },
+      { code: 'I', text: '我能花很長時間獨自鑽研一個主題。' },
+      { code: 'I', text: '我喜歡找出規律、模式。' },
+      { code: 'I', text: '維基百科 / YouTube 教學，我會一個連結點下去停不下來。' },
+      { code: 'I', text: '比起靠直覺，我更相信數據與證據。' },
+      { code: 'I', text: '沒搞懂的事我會睡不著。' },
+      { code: 'I', text: '我喜歡讀資料、做筆記、整理知識。' },
+      { code: 'I', text: '我能享受獨處與自我對話。' },
+      { code: 'I', text: '解謎、推理、密室類遊戲讓我興奮。' },
+
+      // === A · 藝術型 ===
+      { code: 'A', text: '我不喜歡所有東西都要照規矩來。' },
+      { code: 'A', text: '看到醜的東西我會想改。' },
+      { code: 'A', text: '我有「想要做出原本沒有的東西」的衝動。' },
+      { code: 'A', text: '我喜歡發揮想像力。' },
+      { code: 'A', text: '表演、寫作、繪畫、攝影至少有一樣我特別享受。' },
+      { code: 'A', text: '我寧可獨特，也不要安全。' },
+      { code: 'A', text: '美感對我來說很重要，連選一個 IG 字體都會挑。' },
+      { code: 'A', text: '我抗拒太多 SOP 的工作。' },
+      { code: 'A', text: '我喜歡有自己風格的人。' },
+      { code: 'A', text: '我能想出別人沒想過的點子。' },
+
+      // === S · 社會型 ===
+      { code: 'S', text: '看到朋友難過，我會想多陪一下。' },
+      { code: 'S', text: '我喜歡聽別人的故事。' },
+      { code: 'S', text: '教別人東西讓我有成就感。' },
+      { code: 'S', text: '我能感覺到別人沒說出口的情緒。' },
+      { code: 'S', text: '我會主動關心身邊的人。' },
+      { code: 'S', text: '我寧可花時間幫人，也不太計較回報。' },
+      { code: 'S', text: '我習慣在群體裡照顧氣氛。' },
+      { code: 'S', text: '我能耐心面對小孩、長輩、節奏比較慢的人。' },
+      { code: 'S', text: '看到不公平的事我會想出聲。' },
+      { code: 'S', text: '一群人聊天時，我喜歡讓每個人都被聽到。' },
+
+      // === E · 企業型 ===
+      { code: 'E', text: '我能說服別人接受我的想法。' },
+      { code: 'E', text: '在小組裡，我常變成那個「拍板的」。' },
+      { code: 'E', text: '我喜歡能看到成績 / 業績的工作。' },
+      { code: 'E', text: '我願意承擔風險換取更大的回報。' },
+      { code: 'E', text: '我能主動找客人 / 找機會。' },
+      { code: 'E', text: '比起做被分配的事，我更想自己決定要做什麼。' },
+      { code: 'E', text: '我能在壓力下做決定。' },
+      { code: 'E', text: '我喜歡帶人、給方向。' },
+      { code: 'E', text: '跟陌生人聊天我不會緊張。' },
+      { code: 'E', text: '我會想「這件事可以怎麼變成錢」。' },
+
+      // === C · 事務型 ===
+      { code: 'C', text: '我看到亂的東西會想整理。' },
+      { code: 'C', text: '我喜歡按表操課。' },
+      { code: 'C', text: '我能享受重複性的工作（打字、貼標籤、整理檔案）。' },
+      { code: 'C', text: '我會把行事曆 / 筆記寫得很整齊。' },
+      { code: 'C', text: '我抗拒「先做再說」，喜歡先規劃好。' },
+      { code: 'C', text: '規律的生活讓我安心。' },
+      { code: 'C', text: '我能注意到別人沒注意到的小細節。' },
+      { code: 'C', text: '我喜歡有 SOP 的工作。' },
+      { code: 'C', text: '我看數字會比看文字更快理解。' },
+      { code: 'C', text: '拖延、混亂讓我焦慮。' },
+    ];
+
+    const OPTIONS = [
+      { label: '非常符合', score: 3 },
+      { label: '還算符合', score: 2 },
+      { label: '不太符合', score: 1 },
+      { label: '完全不符合', score: 0 },
+    ];
+
+    // ============================================================
+    // CODE METADATA
+    // ============================================================
+    const CODES = {
+      R: { letter: 'R', name: '實作型', kw: '動手 · 戶外 · 機械 · 操作', color: 'r' },
+      I: { letter: 'I', name: '研究型', kw: '分析 · 邏輯 · 解謎 · 累積', color: 'i' },
+      A: { letter: 'A', name: '藝術型', kw: '創作 · 自由 · 表達 · 美感', color: 'a' },
+      S: { letter: 'S', name: '社會型', kw: '幫人 · 教學 · 服務 · 共感', color: 's' },
+      E: { letter: 'E', name: '企業型', kw: '領導 · 銷售 · 承擔 · 結果', color: 'e' },
+      C: { letter: 'C', name: '事務型', kw: '細心 · 規律 · 制度 · 整理', color: 'c' },
+    };
+
+    // ============================================================
+    // PER-CODE DESCRIPTIONS
+    // ============================================================
+    const CODE_DESC = {
+      R: {
+        trait: '<b>用身體與工具直接處理世界。</b>偏好看得見、摸得到的成果，不愛抽象空談。耐力好、能忍受重複，相信「做了才知道」。',
+        career: '修理 · 操作 · 製作 · 戶外 · 現場類工作。喜歡用結果說話，不愛冗長會議。',
+        comm: '直接、不繞圈、行動勝過言語。會用「我做給你看」代替長篇解釋。',
+        jobs: ['廚師', '機車技師', '水電師傅', '警察', '消防員', '志願役', '健身教練', '美髮師', '潛水教練', '海巡'],
+      },
+      I: {
+        trait: '<b>把複雜的事拆開來搞清楚。</b>對「為什麼」有耐心，能獨自鑽研一個主題很久。相信邏輯與證據，看到模糊會不安。',
+        career: '研究 · 分析 · 解謎 · 累積專業 · 解問題類工作。喜歡能深入鑽研的領域。',
+        comm: '精確、邏輯導向、習慣問問題。會在下結論前先確認前提。',
+        jobs: ['軟體工程師', '數據分析師', 'AI 工程師', '護理師', '藥師', '醫檢師', '會計師', '機械工程師', '律師', '醫師'],
+      },
+      A: {
+        trait: '<b>想創造原本不存在的東西。</b>重視表達與獨特性，不愛被規範。對美感敏感，看到醜的會想改。',
+        career: '創作 · 設計 · 表演 · 自由發揮類工作。需要能呈現個人風格的舞台。',
+        comm: '形象化、感性、有畫面感。常用比喻、舉例、故事傳達想法。',
+        jobs: ['平面設計師', 'UI / UX 設計師', '室內設計師', '攝影師', '影像剪輯', '小編', '文案', 'KOL / YouTuber', '插畫家', '建築設計師'],
+      },
+      S: {
+        trait: '<b>透過人、為了人工作。</b>能感覺別人沒說出口的情緒，被需要會有動力。重視關係勝過效率。',
+        career: '教學 · 輔導 · 照護 · 服務人群類工作。需要「我幫到誰」的回饋。',
+        comm: '溫暖、會傾聽、考慮對方感受。會先處理情緒，再處理事情。',
+        jobs: ['國中小老師', '幼教', '社工', '心理諮商', '物理治療師', '長照員', '空服員', '飯店服務', 'NGO 工作者', '導遊'],
+      },
+      E: {
+        trait: '<b>帶動別人、為結果負責。</b>能說服、能決策、能承擔。比起執行，更想決定方向。',
+        career: '銷售 · 創業 · 領導 · 影響類工作。需要看得到「自己做的決定變成了什麼」。',
+        comm: '自信、有說服力、目標導向。會主導對話節奏，講重點不繞圈。',
+        jobs: ['B2B 業務', '保險 / 房仲', '行銷企劃', '店長', '創業老闆', '專案經理 PM', '自媒體', '電商賣家', '管理顧問', '加盟業主'],
+      },
+      C: {
+        trait: '<b>用秩序處理混亂。</b>細心、可靠、不愛意外。看到亂的會想整理，按 SOP 做事不痛苦反而安心。',
+        career: '整理 · 規劃 · 執行 · 流程類工作。需要清楚的框架與可預期的節奏。',
+        comm: '條理分明、注意細節、求精準。會在開始前把流程列清楚。',
+        jobs: ['行政助理', '會計 / 出納', '人資', '銀行行員', '公部門基層', '採購', '品管 QC', '醫院行政', '倉管', '秘書'],
+      },
+    };
+
+    // ============================================================
+    // COMBO TAGLINES (短句綜合描述)
+    // 主邏輯：top1 = 主軸動詞、top2 = 配色、top3 = 底層調性
+    // ============================================================
+    const COMBO_VERBS = {
+      R: '動手做',
+      I: '鑽研',
+      A: '創造',
+      S: '陪伴與引導',
+      E: '推動與成事',
+      C: '整理與守序',
+    };
+
+    const COMBO_FLAVORS = {
+      R: '實在 / 體力 / 現場',
+      I: '深度 / 邏輯 / 累積',
+      A: '美感 / 風格 / 創意',
+      S: '溫度 / 同理 / 關係',
+      E: '行動 / 結果 / 承擔',
+      C: '秩序 / 細節 / 穩定',
+    };
+
+    // 特殊組合（前 30 個有專屬標語），其餘走通用模板
+    const SPECIAL_COMBOS = {
+      RIA: '你是動手做、鑽研到底、且做出風格的人——適合把專業做到「能展示」的位置。',
+      RIE: '你是動手做、鑽研到底、能撐起一攤事情的人——適合技術 + 業務結合的位置。',
+      RIC: '你是動手做、鑽研到底、注重制度的人——適合需要精準執行的專業職人。',
+      RAS: '你是動手做、有美感、又能照顧人的人——服務業 / 設計 + 顧客接觸的工作會發光。',
+      RAE: '你是動手做、有風格、又能談生意的人——適合做自己的品牌 / 工作室。',
+      RES: '你是動手做、能成事、又懂人的人——現場主管 / 帶班型人物。',
+      REC: '你是動手做、能成事、講制度的人——工程 / 工地 / 製造業的管理層適合你。',
+      RSC: '你是動手做、會照顧人、有條理的人——醫護 / 照護 / 餐飲管理路線。',
+
+      IRA: '你是先想清楚、會動手、有美感的人——技術 + 設計的交界很適合你。',
+      IRE: '你是先想清楚、會動手、能推進事情的人——產品經理或技術創業的胚子。',
+      IRS: '你是先想清楚、會動手、會關心人的人——醫療 / 心理 / 教育研究這條路。',
+      IAS: '你是鑽研、有美感、又會照顧人的人——研究 + 教學 + 內容創作的交界。',
+      IAE: '你是鑽研、有風格、能推動的人——適合做專業內容創作者、新興領域開疆者。',
+      IEC: '你是鑽研、能成事、講制度的人——顧問 / 分析師 / 金融專業路線。',
+      ISC: '你是鑽研、會照顧人、有條理的人——醫療 / 諮商 / 行政專業路線。',
+
+      ASE: '你是創作、會照顧人、能推動的人——適合教學型 KOL、教育產品創辦人。',
+      AIS: '你是創作、會鑽研、又懂人的人——人文研究 / 內容平台 / 出版線。',
+      AEC: '你是創作、能成事、講制度的人——適合做品牌主理人、視覺總監。',
+      ASC: '你是創作、會照顧人、有條理的人——設計教育、藝術治療路線。',
+      AIE: '你是創作、會鑽研、能推動的人——文化策展 / 新媒體創業適合你。',
+      ARE: '你是創作、會動手、能推動的人——適合手作品牌、自有工作室。',
+
+      SAE: '你是照顧人、有風格、能推動的人——社會企業、教育創業的胚子。',
+      SAI: '你是照顧人、有風格、會鑽研的人——適合做諮商 / 教育 / 心理工作者。',
+      SEC: '你是照顧人、能成事、講制度的人——學校處室主任 / 機構管理者。',
+      SIE: '你是照顧人、會鑽研、能推動的人——適合做醫療管理、社工督導。',
+      SIC: '你是照顧人、會鑽研、有條理的人——護理督導、學校輔導行政。',
+
+      ESC: '你是能成事、會照顧人、講制度的人——適合做業務主管、客服總監。',
+      EAS: '你是能成事、有風格、又懂人的人——適合做品牌主、行銷總監。',
+      EIC: '你是能成事、會鑽研、講制度的人——適合做策略顧問、財務管理。',
+      EAC: '你是能成事、有風格、講制度的人——適合做活動總監、創業 COO。',
+
+      CES: '你是講制度、能成事、會照顧人的人——適合做營運經理、人資主管。',
+      CIE: '你是講制度、會鑽研、能成事的人——適合做財務分析、稽核管理。',
+      CAS: '你是講制度、有風格、會照顧人的人——適合做設計專案管理、文化機構營運。',
+    };
+
+    function getTagline(top3) {
+      const key = top3.join('');
+      if (SPECIAL_COMBOS[key]) return SPECIAL_COMBOS[key];
+
+      const lead = COMBO_VERBS[top3[0]];
+      const support = COMBO_FLAVORS[top3[1]];
+      const backbone = COMBO_FLAVORS[top3[2]];
+      return `你的主力是「${lead}」，配著${support}，底層還有${backbone}的調性。`;
+    }
+
+    // ============================================================
+    // STATE
+    // ============================================================
+    const STATE = {
+      answers: new Array(QUESTIONS.length).fill(null),
+      cur: 0,
+    };
+
+    // ============================================================
+    // FLOW
+    // ============================================================
+    function startTest() {
+      document.getElementById('intro').style.display = 'none';
+      document.getElementById('qscreen').classList.add('active');
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderQuestion() {
+      const i = STATE.cur;
+      const q = QUESTIONS[i];
+      document.getElementById('qnum').textContent = `Q${String(i + 1).padStart(2, '0')} / 60`;
+      document.getElementById('qtext').textContent = q.text;
+      document.getElementById('qcur').textContent = i + 1;
+      const pct = Math.round(((i + 1) / QUESTIONS.length) * 100);
+      document.getElementById('qpct').textContent = pct + '%';
+      document.getElementById('qfill').style.width = pct + '%';
+
+      const optsEl = document.getElementById('qopts');
+      optsEl.innerHTML = '';
+      OPTIONS.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'qopt' + (STATE.answers[i] === opt.score ? ' selected' : '');
+        btn.innerHTML = `<span class="dot"></span><span>${opt.label}</span>`;
+        btn.onclick = () => {
+          STATE.answers[i] = opt.score;
+          renderQuestion();
+          setTimeout(() => {
+            if (i < QUESTIONS.length - 1) nextQuestion();
+            else updateNextBtn();
+          }, 180);
+        };
+        optsEl.appendChild(btn);
+      });
+
+      document.getElementById('qback').disabled = i === 0;
+      updateNextBtn();
+    }
+
+    function updateNextBtn() {
+      const i = STATE.cur;
+      const btn = document.getElementById('qnext');
+      const answered = STATE.answers[i] !== null;
+      const isLast = i === QUESTIONS.length - 1;
+      btn.disabled = !answered;
+      btn.textContent = isLast ? '看結果 →' : '下一題 →';
+    }
+
+    function nextQuestion() {
+      const i = STATE.cur;
+      if (STATE.answers[i] === null) return;
+      if (i === QUESTIONS.length - 1) {
+        finish();
+        return;
+      }
+      STATE.cur++;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function prevQuestion() {
+      if (STATE.cur === 0) return;
+      STATE.cur--;
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function finish() {
+      const scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+      QUESTIONS.forEach((q, i) => {
+        if (STATE.answers[i] !== null) scores[q.code] += STATE.answers[i];
+      });
+      renderResult(scores);
+    }
+
+    // ============================================================
+    // RESULT
+    // ============================================================
+    function renderResult(scores) {
+      document.getElementById('qscreen').classList.remove('active');
+      document.getElementById('rscreen').classList.add('active');
+
+      const ranked = Object.entries(scores)
+        .sort((a, b) => b[1] - a[1])
+        .map(([code, score]) => ({ code, score, pct: Math.round((score / 30) * 100) }));
+
+      const top3 = ranked.slice(0, 3).map(r => r.code);
+      const bottom = ranked[ranked.length - 1];
+
+      const tagline = getTagline(top3);
+
+      let html = '';
+
+      // === HERO ===
+      html += `
+        <div class="result-card" id="resultCard">
+          <div class="result-hero">
+            <div class="result-kicker">YOUR HOLLAND CODES · TOP 3</div>
+            <h1 class="result-title">${top3.join(' · ')} 型</h1>
+            <div class="top3-codes">
+              ${top3.map((c, idx) => `
+                <div class="badge rank-${idx + 1}">
+                  <div class="l">${c}</div>
+                  <div class="r">#${idx + 1}</div>
+                </div>
+              `).join('')}
+            </div>
+            <p class="result-tagline">${tagline}</p>
+          </div>
+
+          <div class="scores">
+            <h3>六型分數分布</h3>
+            ${ranked.map(r => `
+              <div class="score-row ${r.code.toLowerCase()}">
+                <span class="code-l">${r.code}</span>
+                <div class="bar-track"><div class="bar-fill" style="width:${r.pct}%"></div></div>
+                <span class="pct">${r.score} / 30</span>
+              </div>
+            `).join('')}
+          </div>
+
+          <!-- 基礎特質 -->
+          <div class="rsection">
+            <div class="rsection-title">
+              <div class="icon">①</div>
+              <h2>基礎特質性格</h2>
+            </div>
+            <p>你的人格結構由 <strong>${top3.join(' + ')}</strong> 三股力量組成。從強到弱：</p>
+            <div class="trait-grid">
+              ${top3.map(c => `
+                <div class="trait-item ${c.toLowerCase()}">
+                  <div class="tag">${c}</div>
+                  <div class="body"><b>${CODES[c].name}：</b>${CODE_DESC[c].trait}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- 職業熱情傾向 -->
+          <div class="rsection">
+            <div class="rsection-title">
+              <div class="icon">②</div>
+              <h2>職業熱情傾向</h2>
+            </div>
+            <p>你最容易在這些方向感到「對」：</p>
+            <div class="trait-grid">
+              ${top3.map(c => `
+                <div class="trait-item ${c.toLowerCase()}">
+                  <div class="tag">${c}</div>
+                  <div class="body">${CODE_DESC[c].career}</div>
+                </div>
+              `).join('')}
+            </div>
+            <p style="margin-top:18px"><strong>適合的職業方向（你 Top 3 內常見）：</strong></p>
+            <div class="jobs-list">
+              ${aggregateJobs(top3).map(j => `<span>${j}</span>`).join('')}
+            </div>
+          </div>
+
+          <!-- 溝通風格 -->
+          <div class="rsection">
+            <div class="rsection-title">
+              <div class="icon">③</div>
+              <h2>溝通風格</h2>
+            </div>
+            <p>你跟人互動時，會這樣表達自己：</p>
+            <div class="trait-grid">
+              ${top3.map(c => `
+                <div class="trait-item ${c.toLowerCase()}">
+                  <div class="tag">${c}</div>
+                  <div class="body">${CODE_DESC[c].comm}</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- 盲點 -->
+          <div class="rsection">
+            <div class="rsection-title">
+              <div class="icon">④</div>
+              <h2>你的盲點 / 補位方向</h2>
+            </div>
+            <p>你最弱的一碼是 <strong>${bottom.code} · ${CODES[bottom.code].name}</strong>（${bottom.score} / 30 分）。</p>
+            <div class="blindspot">
+              <strong>提醒：</strong>當你 Top 3 太強時，可能會在這些情境吃虧——
+              ${getBlindspotHint(bottom.code)}
+              <br><br>
+              <strong>補位建議：</strong>不用變成那種人，但<b>身邊找一個 ${bottom.code} 型強的朋友 / 同事</b>，重要決定先跟他聊一下。
+            </div>
+          </div>
+
+          <div class="footer-meta">
+            ${new Date().toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric' })} · HOLLAND CODES · arth.tw/holland
+          </div>
+        </div>
+      `;
+
+      document.getElementById('resultContent').innerHTML = html;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function aggregateJobs(top3) {
+      // 取每碼前 4 個，去重，最多 12 個
+      const set = new Set();
+      top3.forEach(c => {
+        CODE_DESC[c].jobs.slice(0, 4).forEach(j => set.add(j));
+      });
+      return Array.from(set).slice(0, 12);
+    }
+
+    function getBlindspotHint(code) {
+      const hints = {
+        R: '<b>動手能力</b>不足——遇到實作 / 維修 / 體力性的事容易卡。',
+        I: '<b>深度分析</b>不足——容易跳結論、忽略細節、被表象騙。',
+        A: '<b>創意彈性</b>不足——卡在標準答案、看不到非典型可能。',
+        S: '<b>人際同理</b>不足——容易忽略別人情緒、講話太直、踩雷。',
+        E: '<b>主動推進</b>不足——想得多做得少、不敢爭取、被動。',
+        C: '<b>秩序與細節</b>不足——做事拖延、忘東忘西、執行時掉鏈子。',
+      };
+      return hints[code] || '';
+    }
+
+    // ============================================================
+    // ACTIONS
+    // ============================================================
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function downloadPNG() {
+      const card = document.getElementById('resultCard');
+      if (!card || typeof html2canvas === 'undefined') {
+        showToast('產圖工具還在載入，再試一次');
+        return;
+      }
+      showToast('產圖中...');
+      html2canvas(card, {
+        backgroundColor: '#faf6f0',
+        scale: 2,
+        logging: false,
+        useCORS: true,
+      }).then(canvas => {
+        const link = document.createElement('a');
+        const top3 = getCurrentTop3();
+        link.download = `holland-${top3}-${Date.now()}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        showToast('已下載到下載資料夾');
+      }).catch(err => {
+        console.error(err);
+        showToast('產圖失敗，截圖也可以喔');
+      });
+    }
+
+    function getCurrentTop3() {
+      const scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+      QUESTIONS.forEach((q, i) => {
+        if (STATE.answers[i] !== null) scores[q.code] += STATE.answers[i];
+      });
+      return Object.entries(scores).sort((a, b) => b[1] - a[1]).slice(0, 3).map(e => e[0]).join('');
+    }
+
+    function copyResult() {
+      const scores = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
+      QUESTIONS.forEach((q, i) => {
+        if (STATE.answers[i] !== null) scores[q.code] += STATE.answers[i];
+      });
+      const ranked = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const top3 = ranked.slice(0, 3).map(r => r[0]);
+      const tagline = getTagline(top3);
+      const txt = [
+        `🧭 我的 Holland 測評結果`,
+        ``,
+        `Top 3：${top3.join(' · ')} 型`,
+        `${tagline}`,
+        ``,
+        `六型分數：`,
+        ...ranked.map(([c, s]) => `${c} · ${CODES[c].name}：${s} / 30`),
+        ``,
+        `→ arth.tw/holland`,
+      ].join('\n');
+      navigator.clipboard.writeText(txt).then(() => {
+        showToast('已複製，可貼到 LINE / IG / 工作坊學習單');
+      });
+    }
+
+    function restart() {
+      if (!confirm('要重新開始嗎？目前的答案會清掉。')) return;
+      STATE.answers = new Array(QUESTIONS.length).fill(null);
+      STATE.cur = 0;
+      document.getElementById('rscreen').classList.remove('active');
+      document.getElementById('intro').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    // Sanity check: 60 questions
+    console.assert(QUESTIONS.length === 60, 'Should have 60 questions');
+  </script>
+</body>
+
+</html>
